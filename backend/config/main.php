@@ -14,6 +14,7 @@ return [
     'modules' => [],
     'components' => [
         'request' => [
+            'cookieValidationKey' => 'ROMwfZsgvVJzNxogpAbK',
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [

@@ -13,6 +13,7 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
+            'cookieValidationKey' => 'FsDjiRPZDvObaEbFrUcl',
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [

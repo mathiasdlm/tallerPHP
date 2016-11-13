@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fb7d45bf46b26fc80de02bed0e6a5587",
-    "content-hash": "f08e0abea71b3609f00e1c90c38a4e7d",
+    "hash": "4f224ebbac16aef1962fbd040bad70c7",
+    "content-hash": "56676be62046f078585828da10672644",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -194,6 +194,45 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "c006/yii2-migration-utility",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/c006/yii2-migration-utility.git",
+                "reference": "a7455e7405f5914ce62f4f550718c9b61b1c5048"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/c006/yii2-migration-utility/zipball/a7455e7405f5914ce62f4f550718c9b61b1c5048",
+                "reference": "a7455e7405f5914ce62f4f550718c9b61b1c5048",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "c006\\utility\\migration\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Chambers",
+                    "email": "jchambers.dev@gmail.com"
+                }
+            ],
+            "description": "Automatically writes the create tables for migrations or create tables in general",
+            "keywords": [
+                "extension",
+                "migration",
+                "tables",
+                "yii2"
+            ],
+            "time": "2016-11-01 04:58:36"
         },
         {
             "name": "cebe/markdown",
@@ -2950,7 +2989,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "c006/yii2-migration-utility": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
