@@ -1,3 +1,18 @@
+Consideraciones del Proyecto
+===============================
+
+* Editar Common/config/main-local la base de datos
+* Instalar las dependencias de ADMIN LTE:
+    
+    composer require dmstr/yii2-adminlte-asset "2.*"
+
+* Hacer las Migrations
+
+- en index.php?r=gii se entra al Generador de Código de YII2
+- en index.php?r=utility se puede generar una migration.
+
+
+
 Yii 2 Advanced Project Template
 ===============================
 
