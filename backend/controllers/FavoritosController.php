@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\TipoInmueble;
+use backend\models\Favoritos;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TipoInmuebleController implements the CRUD actions for TipoInmueble model.
+ * FavoritosController implements the CRUD actions for Favoritos model.
  */
-class TipoInmuebleController extends Controller
+class FavoritosController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,13 +30,13 @@ class TipoInmuebleController extends Controller
     }
 
     /**
-     * Lists all TipoInmueble models.
+     * Lists all Favoritos models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => TipoInmueble::find(),
+            'query' => Favoritos::find(),
         ]);
 
         return $this->render('index', [
@@ -45,28 +45,29 @@ class TipoInmuebleController extends Controller
     }
 
     /**
-     * Displays a single TipoInmueble model.
-     * @param integer $id
+     * Displays a single Favoritos model.
+     * @param integer $idInmueble
+     * @param integer $idUser
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($idInmueble, $idUser)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($idInmueble, $idUser),
         ]);
     }
 
     /**
-     * Creates a new TipoInmueble model.
+     * Creates a new Favoritos model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new TipoInmueble();
+        $model = new Favoritos();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'idInmueble' => $model->idInmueble, 'idUser' => $model->idUser]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,17 +76,18 @@ class TipoInmuebleController extends Controller
     }
 
     /**
-     * Updates an existing TipoInmueble model.
+     * Updates an existing Favoritos model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param integer $idInmueble
+     * @param integer $idUser
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($idInmueble, $idUser)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($idInmueble, $idUser);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'idInmueble' => $model->idInmueble, 'idUser' => $model->idUser]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -94,28 +96,30 @@ class TipoInmuebleController extends Controller
     }
 
     /**
-     * Deletes an existing TipoInmueble model.
+     * Deletes an existing Favoritos model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param integer $idInmueble
+     * @param integer $idUser
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($idInmueble, $idUser)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($idInmueble, $idUser)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the TipoInmueble model based on its primary key value.
+     * Finds the Favoritos model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return TipoInmueble the loaded model
+     * @param integer $idInmueble
+     * @param integer $idUser
+     * @return Favoritos the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($idInmueble, $idUser)
     {
-        if (($model = TipoInmueble::findOne($id)) !== null) {
+        if (($model = Favoritos::findOne(['idInmueble' => $idInmueble, 'idUser' => $idUser])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
