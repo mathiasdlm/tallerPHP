@@ -28,21 +28,21 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'QuieroCasa.com.uy',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Buscar', 'url' => ['/site/index']],
+        ['label' => 'Mapa', 'url' => ['/site/mapa']]
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => 'Iniciar sesion', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'Favoritos', 'url' => ['/site/favoritos']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -70,7 +70,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; QuieroCasa.com.uy <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

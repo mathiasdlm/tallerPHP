@@ -66,13 +66,33 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Displays buscador.
      *
      * @return mixed
      */
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * Displays mapa.
+     *
+     * @return mixed
+     */
+    public function actionMapa()
+    {
+        return $this->render('mapa');
+    }
+
+    /**
+     * Displays mapa.
+     *
+     * @return mixed
+     */
+    public function actionFavoritos()
+    {
+        return $this->render('favoritos');
     }
 
     /**
