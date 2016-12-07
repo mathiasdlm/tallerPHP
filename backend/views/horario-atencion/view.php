@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Inmueble */
+/* @var $model app\models\HorarioAtencion */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Inmuebles', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Horario Atencions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="inmueble-view">
+<div class="horario-atencion-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,17 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'nombre',
-            'lat',
-            'lon',
-            'cantDormitorios',
-            'cantBanos',
-            'metrosTotales',
-            'metrosEdificados',
-            'cochera',
-            'patio',
-            'idTipo',
+            'horaDesde',
+            'horaHasta',
             'idCliente',
+            'idInmueble',
         ],
     ]) ?>
 

@@ -30,37 +30,14 @@
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
-                    ['label' => 'Crear Usuario', 'icon' => 'fa fa-dashboard', 'url' => ['/crearUsuario']],
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
-                        'label' => 'Same tools',
-                        'icon' => 'fa fa-share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'fa fa-circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'fa fa-circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
+                    ['label' => 'Clientes', 'icon' => 'fa fa-dashboard', 'url' => ['/cliente']],
+                    ['label' => 'Inmuebles', 'icon' => 'fa fa-dashboard', 'url' => ['/inmueble']],
+                    ['label' => 'Usuarios', 'icon' => 'fa fa-dashboard', 'url' => ['/user']],
+                    ['label' => 'Administradores', 'icon' => 'fa fa-dashboard', 'url' => ['/admin']],
+                    ['label' => 'Tipos de Inmueble', 'icon' => 'fa fa-dashboard', 'url' => ['/tipo-inmueble']],
+                    ['label' => 'Favoritos', 'icon' => 'fa fa-dashboard', 'url' => ['/favoritos']],
+                    ['label' => 'Horario Atención', 'icon' => 'fa fa-dashboard', 'url' => ['/horario-atencion']]
+
                 ],
             ]
         ) ?>

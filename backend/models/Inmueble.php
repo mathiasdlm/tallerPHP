@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -9,7 +9,8 @@ use Yii;
  *
  * @property integer $id
  * @property string $nombre
- * @property string $coordenadas
+ * @property double $lat
+ * @property double $lon
  * @property integer $cantDormitorios
  * @property integer $cantBanos
  * @property integer $metrosTotales
@@ -17,10 +18,12 @@ use Yii;
  * @property integer $cochera
  * @property integer $patio
  * @property integer $idTipo
+ * @property integer $idCliente
  *
- * @property TipoInmueble $id0
- * @property InmuebleCliente[] $inmuebleClientes
- * @property Cliente[] $idClientes
+ * @property Favoritos[] $favoritos
+ * @property User[] $idUsers
+ * @property Cliente $idCliente0
+ * @property TipoInmueble $idTipo0
  */
 class Inmueble extends \yii\db\ActiveRecord
 {
@@ -38,11 +41,12 @@ class Inmueble extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'coordenadas', 'cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cochera', 'patio', 'idTipo'], 'required'],
-            [['coordenadas'], 'string'],
-            [['cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cochera', 'patio', 'idTipo'], 'integer'],
+            [['nombre', 'lat', 'lon', 'cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cochera', 'patio', 'idTipo', 'idCliente'], 'required'],
+            [['lat', 'lon'], 'number'],
+            [['cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cochera', 'patio', 'idTipo', 'idCliente'], 'integer'],
             [['nombre'], 'string', 'max' => 30],
-            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => TipoInmueble::className(), 'targetAttribute' => ['id' => 'id']],
+            [['idCliente'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['idCliente' => 'id']],
+            [['idTipo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoInmueble::className(), 'targetAttribute' => ['idTipo' => 'id']],
         ];
     }
 
@@ -54,7 +58,8 @@ class Inmueble extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
-            'coordenadas' => 'Coordenadas',
+            'lat' => 'Lat',
+            'lon' => 'Lon',
             'cantDormitorios' => 'Cant Dormitorios',
             'cantBanos' => 'Cant Banos',
             'metrosTotales' => 'Metros Totales',
@@ -62,30 +67,39 @@ class Inmueble extends \yii\db\ActiveRecord
             'cochera' => 'Cochera',
             'patio' => 'Patio',
             'idTipo' => 'Id Tipo',
+            'idCliente' => 'Id Cliente',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getId0()
+    public function getFavoritos()
     {
-        return $this->hasOne(TipoInmueble::className(), ['id' => 'id']);
+        return $this->hasMany(Favoritos::className(), ['idInmueble' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getInmuebleClientes()
+    public function getIdUsers()
     {
-        return $this->hasMany(InmuebleCliente::className(), ['idInmueble' => 'id']);
+        return $this->hasMany(User::className(), ['id' => 'idUser'])->viaTable('favoritos', ['idInmueble' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdClientes()
+    public function getIdCliente0()
     {
-        return $this->hasMany(Cliente::className(), ['id' => 'idCliente'])->viaTable('inmuebleCliente', ['idInmueble' => 'id']);
+        return $this->hasOne(Cliente::className(), ['id' => 'idCliente']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdTipo0()
+    {
+        return $this->hasOne(TipoInmueble::className(), ['id' => 'idTipo']);
     }
 }

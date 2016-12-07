@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $Nombre
  *
- * @property Inmueble $inmueble
+ * @property Inmueble[] $inmuebles
  */
 class TipoInmueble extends \yii\db\ActiveRecord
 {
@@ -47,8 +47,8 @@ class TipoInmueble extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getInmueble()
+    public function getInmuebles()
     {
-        return $this->hasOne(Inmueble::className(), ['id' => 'id']);
+        return $this->hasMany(Inmueble::className(), ['idTipo' => 'id']);
     }
 }

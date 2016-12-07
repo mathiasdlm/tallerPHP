@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
-
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'coordenadas')->textInput() ?>
+    <?= $form->field($model, 'lat')->textInput() ?>
+
+    <?= $form->field($model, 'lon')->textInput() ?>
 
     <?= $form->field($model, 'cantDormitorios')->textInput() ?>
 
@@ -31,6 +31,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'patio')->textInput() ?>
 
     <?= $form->field($model, 'idTipo')->textInput() ?>
+
+    <?= $form->field($model, 'idCliente')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

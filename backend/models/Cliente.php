@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -14,8 +14,7 @@ use Yii;
  * @property string $email
  *
  * @property HorarioAtencion[] $horarioAtencions
- * @property InmuebleCliente[] $inmuebleClientes
- * @property Inmueble[] $idInmuebles
+ * @property Inmueble[] $inmuebles
  */
 class Cliente extends \yii\db\ActiveRecord
 {
@@ -65,16 +64,8 @@ class Cliente extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getInmuebleClientes()
+    public function getInmuebles()
     {
-        return $this->hasMany(InmuebleCliente::className(), ['idCliente' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdInmuebles()
-    {
-        return $this->hasMany(Inmueble::className(), ['id' => 'idInmueble'])->viaTable('inmuebleCliente', ['idCliente' => 'id']);
+        return $this->hasMany(Inmueble::className(), ['idCliente' => 'id']);
     }
 }
