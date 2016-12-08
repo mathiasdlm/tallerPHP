@@ -6,20 +6,20 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\HorarioAtencion */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Horario Atencions', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Horarios';
+//$this->params['breadcrumbs'][] = ['label' => 'Horario Atencions', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="horario-atencion-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+   <!-- <h1><?= Html::encode($this->title) ?></h1>-->
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Esta seguro que desea eliminar este Horario?',
                 'method' => 'post',
             ],
         ]) ?>

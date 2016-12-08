@@ -6,20 +6,20 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\TipoInmueble */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Tipo Inmuebles', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Tipos de Inmuebles';
+//$this->params['breadcrumbs'][] = ['label' => 'Tipo Inmuebles', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tipo-inmueble-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Esta seguro que desea eliminar este tipo-Inmueble?',
                 'method' => 'post',
             ],
         ]) ?>

@@ -6,15 +6,15 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Horario Atencions';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Horario Atencion';
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="horario-atencion-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+   <!-- <h1><?= Html::encode($this->title) ?></h1>-->
 
     <p>
-        <?= Html::a('Create Horario Atencion', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Horario Atencion', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -6,15 +6,14 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Admins';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Listado de Administradores';
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Admin', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Administrador', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

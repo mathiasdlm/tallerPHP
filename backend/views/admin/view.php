@@ -6,20 +6,19 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Admin */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Admins', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Datos Administrador';
+//$this->params['breadcrumbs'][] = ['label' => 'Admins', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Esta seguro que desea eliminar este Administrador?',
                 'method' => 'post',
             ],
         ]) ?>

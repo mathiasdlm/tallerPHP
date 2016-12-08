@@ -39,7 +39,7 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.0
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Tecnologo en Informatica 2016<a href="http://universidad.edu.uy/carreras/majorMoreInfo/majorId/53"> Udelar - TecnoInf</a>.</strong> All rights
     reserved.
 </footer>
 
@@ -102,7 +102,7 @@ use dmstr\widgets\Alert;
                 </li>
             </ul>
             <!-- /.control-sidebar-menu -->
-
+<!--
             <h3 class="control-sidebar-heading">Tasks Progress</h3>
             <ul class='control-sidebar-menu'>
                 <li>
@@ -154,13 +154,13 @@ use dmstr\widgets\Alert;
                     </a>
                 </li>
             </ul>
-            <!-- /.control-sidebar-menu -->
+            < /.control-sidebar-menu 
 
         </div>
-        <!-- /.tab-pane -->
+        < /.tab-pane -->
 
         <!-- Settings tab content -->
-        <div class="tab-pane" id="control-sidebar-settings-tab">
+        <!--<div class="tab-pane" id="control-sidebar-settings-tab">
             <form method="post">
                 <h3 class="control-sidebar-heading">General Settings</h3>
 
@@ -174,7 +174,7 @@ use dmstr\widgets\Alert;
                         Some information about this general settings option
                     </p>
                 </div>
-                <!-- /.form-group -->
+                /.form-group 
 
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
@@ -185,10 +185,10 @@ use dmstr\widgets\Alert;
                     <p>
                         Other sets of options are available
                     </p>
-                </div>
+                </div>-->
                 <!-- /.form-group -->
 
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label class="control-sidebar-subheading">
                         Expose author name in posts
                         <input type="checkbox" class="pull-right" checked/>
@@ -197,37 +197,38 @@ use dmstr\widgets\Alert;
                     <p>
                         Allow the user to show his name in blog posts
                     </p>
-                </div>
+                </div>-->
                 <!-- /.form-group -->
 
-                <h3 class="control-sidebar-heading">Chat Settings</h3>
+                <!--<h3 class="control-sidebar-heading">Chat Settings</h3>
 
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Show me as online
                         <input type="checkbox" class="pull-right" checked/>
                     </label>
-                </div>
+                </div>-->
                 <!-- /.form-group -->
 
-                <div class="form-group">
+               <!-- <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Turn off notifications
                         <input type="checkbox" class="pull-right"/>
                     </label>
-                </div>
+                </div>-->
                 <!-- /.form-group -->
 
-                <div class="form-group">
+               <!-- <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Delete chat history
                         <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
                     </label>
-                </div>
+                </div>-->
                 <!-- /.form-group -->
-            </form>
-        </div>
+            <!--</form>
+        </div>-->
         <!-- /.tab-pane -->
+        </div>
     </div>
 </aside><!-- /.control-sidebar -->
 <!-- Add the sidebar's background. This div must be placed

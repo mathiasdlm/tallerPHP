@@ -7,14 +7,14 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Inmuebles';
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="inmueble-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
     <p>
-        <?= Html::a('Create Inmueble', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Inmueble', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -23,9 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'nombre',
-            'lat',
-            'lon',
             'cantDormitorios',
+            'patio',
+            'cochera',
+            //'lat',
+            //'lon',
             // 'cantBanos',
             // 'metrosTotales',
             // 'metrosEdificados',
