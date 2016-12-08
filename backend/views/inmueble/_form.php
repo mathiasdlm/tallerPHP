@@ -1,7 +1,12 @@
 <?php
+namespace backend\models;
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\Cliente;
+use backend\models\TipoInmueble;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Inmueble */
@@ -30,9 +35,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'patio')->textInput() ?>
 
-    <?= $form->field($model, 'idTipo')->textInput() ?>
+    <?= $form->field($model, 'idTipo')->dropDownList(  
 
-    <?= $form->field($model, 'idCliente')->textInput() ?>
+        ArrayHelper::map(TipoInmueble::find()->all(),'id','Nombre'),['prompt'=>'Seleccione un Tipo']); ?>
+    
+    <?=$form->field($model, 'idCliente')->dropDownList(
+        
+        ArrayHelper::map(Cliente::find()->all(),'id','nombre'),['prompt'=>'Seleccione un Cliente']); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Alta Inmueble' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -14,6 +14,15 @@ use yii\filters\VerbFilter;
  */
 class InmuebleController extends Controller
 {
+
+    public function dropDown()
+    {
+
+    $items = ArrayHelper::map(Inmueble::find()->all(), 'idCliente','nombre');
+
+    return $this->render('view',['model'=>$model, 'items'=>$items]);
+
+    }
     /**
      * @inheritdoc
      */
@@ -74,6 +83,9 @@ class InmuebleController extends Controller
         }
     }
 
+
+    
+    
     /**
      * Updates an existing Inmueble model.
      * If update is successful, the browser will be redirected to the 'view' page.
