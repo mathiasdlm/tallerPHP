@@ -1,5 +1,5 @@
 <?php
-namespace frontend\models;
+namespace common\models;
 
 use yii\base\Model;
 use common\models\User;
@@ -9,9 +9,11 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
+      public $id;
     public $username;
     public $email;
     public $password;
+    public $rol;
 
 
     /**
@@ -44,12 +46,13 @@ class SignupForm extends Model
     public function signup()
     {
         if (!$this->validate()) {
-            return null;
+            return null; 
         }
         
-        $user = new User();
+        $user = new Admin();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->rol = $this->rol;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         
