@@ -1,6 +1,13 @@
 <?php
 
+
+use Yii;
+use yii\base\NotSupportedException;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
 
 
 /* @var $this yii\web\View */
@@ -13,8 +20,30 @@ $this->title = 'Alta Administrador';
 <div class="admin-create">
 
    
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+
+    <p>Please fill out the following fields to signup:</p>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+
+                <?= $form->field($model, 'email') ?>
+
+                <?= $form->field($model, 'password')->passwordInput() ?>
+
+                <?= $form->field($model, 'rol')->textInput() ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                </div>
+
+            <?php ActiveForm::end(); ?>
+        </div>
+    </div>
+
+
+    
 
 </div>

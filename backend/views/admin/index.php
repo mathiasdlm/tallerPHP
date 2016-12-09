@@ -30,8 +30,7 @@ $this->title = 'Listado de Administradores';
             // 'created_at',
             // 'updated_at',
             // 'rol',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}'],
         ],
     ]); ?>
 </div>
