@@ -71,12 +71,13 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
+
             return $this->goHome();
         }
 
         $model = new AdminLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(Yii::app()->homeUrl.'cliente'); //aqui va al login
+
             return $this->goBack();
         } else {
             return $this->render('login', [
@@ -84,6 +85,7 @@ class SiteController extends Controller
             ]);
         }
     }
+
 
     /**
      * Logout action.
