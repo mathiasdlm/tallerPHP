@@ -8,7 +8,7 @@
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Usuario Registrado</p>
+                <p><?= Yii::$app->user->identity->username; ?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -30,13 +30,13 @@
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
-                    ['label' => 'Clientes', 'icon' => 'fa fa-dashboard', 'url' => ['/cliente']],
-                    ['label' => 'Inmuebles', 'icon' => 'fa fa-dashboard', 'url' => ['/inmueble']],
-                    ['label' => 'Usuarios', 'icon' => 'fa fa-dashboard', 'url' => ['/user']],
-                    ['label' => 'Administradores', 'icon' => 'fa fa-dashboard', 'url' => ['/admin']],
-                    ['label' => 'Tipos de Inmueble', 'icon' => 'fa fa-dashboard', 'url' => ['/tipo-inmueble']],
+                    ['label' => 'Clientes', 'icon' => 'fa fa-user', 'url' => ['/cliente']],
+                    ['label' => 'Inmuebles', 'icon' => 'fa fa-home', 'url' => ['/inmueble']],
+                    ['label' => 'Usuarios', 'icon' => 'fa fa-users', 'url' => ['/user']],
+                    ['label' => 'Administradores', 'icon' => 'fa fa-user-secret', 'url' => ['/admin']],
+                    ['label' => 'Tipos de Inmueble', 'icon' => 'fa fa-tags', 'url' => ['/tipo-inmueble']],
                   
-                    ['label' => 'Horario Atención', 'icon' => 'fa fa-dashboard', 'url' => ['/horario-atencion']]
+                    ['label' => 'Horario Atención', 'icon' => 'fa fa-clock-o', 'url' => ['/horario-atencion']]
 
                 ],
             ]

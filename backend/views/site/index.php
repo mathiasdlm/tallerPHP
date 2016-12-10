@@ -12,6 +12,6 @@ $this->title = 'INDEX';
 <div class="cliente-index">
 
     <p>
-        <?= Html::a('Alta Cliente', ['create'], ['class' => 'btn btn-success']) ?>
+        <spam>Bienvenidos al Administrador de Inmuebles</spam>
     </p>
 </div>
