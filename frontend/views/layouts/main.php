@@ -36,7 +36,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Buscar', 'url' => ['/site/index']],
-        ['label' => 'Mapa', 'url' => ['/site/mapa']]
+        ['label' => 'Busqueda en el Mapa', 'url' => ['/site/mapa']]
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup']];
