@@ -25,24 +25,20 @@ $this->title = 'Inmuebles';
                         'dataProvider' => $provider,  
                         'emptyText' => 'No hay inmuebles para mostrar',  
                         'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
-                            'id',
                             'nombre:ntext',
                             'cantDormitorios:ntext',
                             'metrosTotales:ntext',
                             'metrosEdificados:ntext',
                             'cantBanos:ntext',
-                            'cochera:ntext',
-                            'patio:ntext',
                             [
-                             'attribute' => 'tipo',
-                             'value' => 'tipo.Nombre',
-                             'filter'=>ArrayHelper::map(TipoInmueble::find()->asArray()->all(), 'id', 'Nombre'),
-                             ],
-                        [
-                            'class' => 'yii\grid\ActionColumn',
-                            'template' => '{view}',
-                        ],
+                                'attribute' => 'tipo',
+                                'value' => 'tipo.Nombre',
+                                'filter'=>ArrayHelper::map(TipoInmueble::find()->asArray()->all(), 'id', 'Nombre'),
+                            ],
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'template' => '{view}',
+                            ]
                         ]
                     ]); 
                 ?>  

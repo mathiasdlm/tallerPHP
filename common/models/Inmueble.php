@@ -47,7 +47,7 @@ class Inmueble extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'lat', 'lon', 'cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cochera', 'patio', 'idTipo', 'idCliente'], 'required'],
+            [['nombre', 'lat', 'lon', 'cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'idTipo', 'idCliente'], 'required'],
             [['lat', 'lon'], 'number'],
             [['cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cochera', 'patio', 'idTipo', 'idCliente'], 'integer'],
             [['nombre'], 'string', 'max' => 30],
@@ -63,7 +63,7 @@ class Inmueble extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
+            'id' => Yii::t('app', 'Id'),
             'nombre' => Yii::t('app', 'Nombre'),
             'lat' => Yii::t('app', 'Lat'),
             'lon' => Yii::t('app', 'Lon'),
