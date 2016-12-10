@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * TipoInmuebleController implements the CRUD actions for TipoInmueble model.
  */
-class TipoInmuebleController extends Controller
+class TipoInmuebleController extends BaseController
 {
     /**
      * @inheritdoc

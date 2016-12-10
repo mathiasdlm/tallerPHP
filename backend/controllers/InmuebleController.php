@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * InmuebleController implements the CRUD actions for Inmueble model.
  */
-class InmuebleController extends Controller
+class InmuebleController extends BaseController
 {
 
     public function dropDown()

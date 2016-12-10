@@ -12,6 +12,16 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+     
+    'on beforeAction' =>function($event){ 
+        $ctrlName = Yii::$app->controller->id;//$event->action->controller->id;
+        $action = Yii::$app->controller->action->id;//$event->action->controller->module->requestedRoute;
+
+        if (Yii::$app->user->isGuest && $ctrlName != 'site' && $action != 'login') {     
+            $event->action->controller->redirect("site/login");       
+            
+        }
+    },
     'components' => [
         'request' => [
             'cookieValidationKey' => 'ROMwfZsgvVJzNxogpAbK',

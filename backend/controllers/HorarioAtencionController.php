@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * HorarioAtencionController implements the CRUD actions for HorarioAtencion model.
  */
-class HorarioAtencionController extends Controller
+class HorarioAtencionController extends BaseController
 {
     /**
      * @inheritdoc
