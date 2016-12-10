@@ -93,7 +93,7 @@ class SiteController extends Controller
                 if($key != 'tipo' && $value != null && isset($value) && !empty($value)){
                     $attr[$key] = $value;
                 }
-                if($key = 'tipo' && $value != null && isset($value) && !empty($value)){
+                if($key == 'tipo' && $value != null && isset($value) && !empty($value)){
                      $attr["idTipo"] = $value;
                 }
             }
@@ -105,8 +105,7 @@ class SiteController extends Controller
             $query = Inmueble::find();
         }
     
-       $query->joinWith(['tipo']);
-
+      
         $provider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
