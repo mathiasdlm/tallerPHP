@@ -11,6 +11,11 @@ $this->title = 'Informacion Inmueble';
 //$this->params['breadcrumbs'][] = ['label' => 'Clientes', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
+<style>
+  #map {
+    height: 560px;
+  }
+</style>
 <div class="inmueble-view">
 
   <!--  <h1><?= Html::encode($this->title) ?></h1>-->
@@ -42,5 +47,44 @@ $this->title = 'Informacion Inmueble';
             'patio',
         ],
     ]) ?>
+    <div class="container-fluid">
+        <div class="col-xs-12 col-md-12">
+            <div id="map"></div>
+        </div>
+    </div>
+    <?= HTML::activeHiddenInput($model, 'lon', ["id"=>"lon"]) ?>
+    <?= HTML::activeHiddenInput($model, 'lat', ["id"=>"lat"]) ?>
+    <script type="text/javascript">
+        var lat = parseInt(document.getElementById('lat').value); 
+        var lon = parseInt(document.getElementById('lat').value);
 
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom    : 7,
+              center  : { lat : lat, lng : lon }
+            });
+
+          
+            var contentString = 
+            '<div id="content">'+
+              '<h4><?php echo $model->nombre ?></h4>' +
+            '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+              content : contentString
+            });
+
+            var marker = new google.maps.Marker({
+              map       : map,
+              title     : '<?php echo $model->nombre ?>',
+              position  : { lat : lat, lng : lon },
+            });
+
+            marker.addListener('click', function() {
+              infowindow.open(map, marker);
+            }); 
+        }
+    </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.21&key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es&libraries=weather,geometry,visualization,places&callback=initMap"></script>
 </div>
