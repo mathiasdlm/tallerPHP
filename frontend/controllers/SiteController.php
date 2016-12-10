@@ -15,6 +15,7 @@ use common\models\PasswordResetRequestForm;
 use common\models\ResetPasswordForm;
 use common\models\SignupForm;
 use common\models\ContactForm;
+use common\models\InmuebleSearch;
 /**
  * Site controller
  */
@@ -83,17 +84,20 @@ class SiteController extends Controller
         ]);
     }
     public function actionList()
-    {
+    { 
         $inm = new Inmueble();
         if(Yii::$app->request->get('Inmueble')){
             $inm->load(Yii::$app->request->get());
             $attr = [];
             foreach (Yii::$app->request->get()['Inmueble'] as $key => $value) {
-                if($value != null && isset($value) && !empty($value)){
+                if($key != 'tipo' && $value != null && isset($value) && !empty($value)){
                     $attr[$key] = $value;
-                   
+                }
+                if($key = 'tipo' && $value != null && isset($value) && !empty($value)){
+                     $attr["idTipo"] = $value;
                 }
             }
+            var_dump($attr);
             $query = Inmueble::find()->where($attr);
         
         }else{
@@ -101,7 +105,7 @@ class SiteController extends Controller
             $query = Inmueble::find();
         }
     
-       
+       $query->joinWith(['tipo']);
 
         $provider = new ActiveDataProvider([
             'query' => $query,
@@ -117,8 +121,8 @@ class SiteController extends Controller
         ]);
 
         // returns an array of Post objects
-        $inmuebles = $provider->getModels();
-         return $this->render('list',  [ 'inmuebles' => $inmuebles, 'provider' => $provider, 'model' => $inm ]);
+        $inmuebles = $provider->getModels();      
+         return $this->render('list',  [ 'inmuebles' => $inmuebles, 'provider' => $provider, 'model' => $inm]);
     }
     /**
      * Displays mapa.

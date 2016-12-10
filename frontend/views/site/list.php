@@ -3,9 +3,9 @@
 use yii\helpers\Html; 
 
 use yii\widgets\Pjax;
-use backend\models\TipoInmueble;  
-use yii\widgets\ActiveForm; 
-                   use yii\grid\GridView;
+use common\models\TipoInmueble;
+use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -34,6 +34,11 @@ $this->title = 'Inmuebles';
                             'cantBanos:ntext',
                             'cochera:ntext',
                             'patio:ntext',
+                            [
+                             'attribute' => 'tipo',
+                             'value' => 'tipo.Nombre',
+                             'filter'=>ArrayHelper::map(TipoInmueble::find()->asArray()->all(), 'id', 'Nombre'),
+                             ],
                         [
                             'class' => 'yii\grid\ActionColumn',
                             'template' => '{view}',
