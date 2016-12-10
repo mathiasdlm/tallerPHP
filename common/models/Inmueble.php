@@ -29,6 +29,7 @@ use Yii;
  */
 class Inmueble extends \yii\db\ActiveRecord
 {
+    public $tipo;
     /**
      * @inheritdoc
      */
@@ -36,7 +37,10 @@ class Inmueble extends \yii\db\ActiveRecord
     {
         return 'inmueble';
     }
-
+    function afterFind(){ 
+        if($this->getTipo()->one() != null);
+        $this->tipo = $this->getTipo()->one();
+    }
     /**
      * @inheritdoc
      */
@@ -49,6 +53,7 @@ class Inmueble extends \yii\db\ActiveRecord
             [['nombre'], 'string', 'max' => 30],
             [['idTipo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoInmueble::className(), 'targetAttribute' => ['idTipo' => 'id']],
             [['idCliente'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['idCliente' => 'id']],
+             [['tipo',], 'safe'],
         ];
     }
 
@@ -96,7 +101,10 @@ class Inmueble extends \yii\db\ActiveRecord
     {
         return $this->hasOne(TipoInmueble::className(), ['id' => 'idTipo']);
     }
-
+    public function getTipo()
+    {
+        return $this->hasOne(TipoInmueble::className(), ['id' => 'idTipo']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
