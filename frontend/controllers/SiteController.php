@@ -146,8 +146,59 @@ class SiteController extends Controller
      */
     public function actionFavoritos()
     {
-        Favoritos::find();
-        return $this->render('favoritos');
+
+        if(!Yii::$app->user->isGuest){
+            $usrId = Yii::$app->user->identity->id;
+            $favs = Favoritos::find()->where(['idUser'=>$usrId])->all();
+            $ids = [];
+            $index = 0;
+            foreach ($favs as $key => $value) {
+                //var_dump($key);
+                //var_dump($value) and die();
+                $ids[$index] = $value->idInmueble;
+                $index++;
+            }
+            $attr = [];
+            $attr["id"] = $ids;
+            $inm = new Inmueble();
+            if(Yii::$app->request->get('Inmueble')){
+                $inm->load(Yii::$app->request->get());
+                
+                foreach (Yii::$app->request->get()['Inmueble'] as $key => $value) {
+                    if($key != 'tipo' && $value != null && isset($value) && !empty($value)){
+                        $attr[$key] = $value;
+                    }
+                    if($key == 'tipo' && $value != null && isset($value) && !empty($value)){
+                         $attr["idTipo"] = $value;
+                    }
+                }
+                $query = Inmueble::find()->where($attr);
+            
+            }else{
+           
+                $query = Inmueble::find()->where($attr);
+            }
+        
+          
+            $provider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                    'pageSize' => 10,
+                ],
+                'sort' => [
+                    'defaultOrder' => [
+                        'nombre' => SORT_DESC,
+                        'metrosTotales' => SORT_ASC, 
+                    ]
+                ],
+            ]);
+            // returns an array of Post objects
+            $inmuebles = $provider->getModels();      
+             return $this->render('favoritos',  [ 'inmuebles' => $inmuebles, 'provider' => $provider, 'model' => $inm]);
+
+        }else{
+            return $this->actionLogin();            
+        }
     }
     public function actionFavorito()
     {   
