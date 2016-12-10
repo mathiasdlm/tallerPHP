@@ -37,7 +37,21 @@ $this->title = 'Inmuebles';
             'metrosTotales',
             'metrosEdificados',
             'cochera',
-            'patio',
+            'patio'=>[
+            'attribute' => 'patio',
+            'format'=>'boolean',
+            'value'=> function ($model) {
+                if($model->recurring == 1)
+                {
+
+                    return 'Si';
+
+                } 
+                else {
+                    return 'No';
+                }
+              },
+            ],
             'idTipo',
             'idCliente',
         ],
