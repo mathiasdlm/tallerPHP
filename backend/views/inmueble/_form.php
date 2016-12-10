@@ -31,9 +31,9 @@ use backend\models\TipoInmueble;
 
     <?= $form->field($model, 'metrosEdificados')->textInput() ?>
 
-    <?= $form->field($model, 'cochera')->textInput() ?>
+    <?= $form->field($model, 'cochera')->checkboxList([0 => ' No ', 1 => ' Si']) ?>
 
-    <?= $form->field($model, 'patio')->textInput() ?>
+    <?= $form->field($model, 'patio')->checkboxList([0 => ' No ', 1 => ' Si']) ?>
 
     <?= $form->field($model, 'idTipo')->dropDownList(  
 
