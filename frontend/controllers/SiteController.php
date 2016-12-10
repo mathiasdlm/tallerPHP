@@ -16,6 +16,7 @@ use common\models\ResetPasswordForm;
 use common\models\SignupForm;
 use common\models\ContactForm;
 use common\models\InmuebleSearch;
+use common\models\Favoritos;
 /**
  * Site controller
  */
@@ -78,8 +79,15 @@ class SiteController extends Controller
         return $this->render('index');
     }
      public function actionView($id = null)
-    {
+    { 
+        $fav = null;
+        if(!Yii::$app->user->isGuest){
+            $id = Yii::$app->request->post('Inmueble')['id'];
+            $usrId = Yii::$app->user->identity->id;
+            $fav = Favoritos::find()->where(["idInmueble" => $id, "idUser" => $usrId])->one();
+        }
         return $this->render('detalle', [
+            'fav' => $fav,
             'model' => Inmueble::find()->where(["id" =>$id])->one()
         ]);
     }
@@ -97,7 +105,6 @@ class SiteController extends Controller
                      $attr["idTipo"] = $value;
                 }
             }
-            var_dump($attr);
             $query = Inmueble::find()->where($attr);
         
         }else{
@@ -118,7 +125,6 @@ class SiteController extends Controller
                 ]
             ],
         ]);
-
         // returns an array of Post objects
         $inmuebles = $provider->getModels();      
          return $this->render('list',  [ 'inmuebles' => $inmuebles, 'provider' => $provider, 'model' => $inm]);
@@ -140,7 +146,38 @@ class SiteController extends Controller
      */
     public function actionFavoritos()
     {
+        Favoritos::find();
         return $this->render('favoritos');
+    }
+    public function actionFavorito()
+    {   
+        if(!Yii::$app->user->isGuest && Yii::$app->request->isPost){
+            $id = Yii::$app->request->post('Inmueble')['id'];
+            $usrId = Yii::$app->user->identity->id;
+
+            $fav = Favoritos::find()->where(["idInmueble" => $id, "idUser" => $usrId])->one();
+ 
+            if(!isset($fav) ){
+
+                $fav = new Favoritos();
+                $fav->idInmueble = $id;
+                $fav->idUser = $usrId;
+                if($fav->save()){
+
+                  Yii::$app->session->setFlash('success', 'Inmueble guardado como favorito');
+                  return $this->render('detalle', [
+                    'fav' => $fav,
+                    'model' => Inmueble::find()->where(["id" =>$id])->one()]);
+                }
+            }else{
+                return $this->render('detalle', [
+                    'fav' => $fav,
+                    'model' => Inmueble::find()->where(["id" =>$id])->one()]);
+            }
+
+            
+        }
+        
     }
 
     /**
