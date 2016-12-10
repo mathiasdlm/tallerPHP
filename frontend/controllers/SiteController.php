@@ -76,7 +76,7 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
-     public function actionDetalle($id = null)
+     public function actionView($id = null)
     {
         return $this->render('detalle', [
             'model' => Inmueble::find()->where(["id" =>$id])->one()
@@ -84,8 +84,24 @@ class SiteController extends Controller
     }
     public function actionList()
     {
-
-        $query = Inmueble::find();
+        $inm = new Inmueble();
+        if(Yii::$app->request->get('Inmueble')){
+            $inm->load(Yii::$app->request->get());
+            $attr = [];
+            foreach (Yii::$app->request->get()['Inmueble'] as $key => $value) {
+                if($value != null && isset($value) && !empty($value)){
+                    $attr[$key] = $value;
+                   
+                }
+            }
+            $query = Inmueble::find()->where($attr);
+        
+        }else{
+       
+            $query = Inmueble::find();
+        }
+    
+       
 
         $provider = new ActiveDataProvider([
             'query' => $query,
@@ -102,8 +118,7 @@ class SiteController extends Controller
 
         // returns an array of Post objects
         $inmuebles = $provider->getModels();
-
-        return $this->render('list',  [ 'inmuebles' => $inmuebles, 'provider' => $provider ]);
+         return $this->render('list',  [ 'inmuebles' => $inmuebles, 'provider' => $provider, 'model' => $inm ]);
     }
     /**
      * Displays mapa.

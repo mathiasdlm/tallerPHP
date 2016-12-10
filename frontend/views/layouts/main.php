@@ -68,7 +68,7 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
+<footer class="footer" style="position: fixed;bottom: 0;"">
     <div class="container">
         <p class="pull-left">&copy; QuieroCasa.com.uy <?= date('Y') ?></p>
 
