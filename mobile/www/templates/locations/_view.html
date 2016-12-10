@@ -1,0 +1,41 @@
+<ion-view view-title="Propiedades" hide-back-button="true">
+
+  <ion-nav-buttons side="secondary">
+    <button class="button button-clear icon-right icon button-icon ion-ios-list-outline" ng-click="viewAllProjects()"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header" scroll="false" >
+
+    <div class="map-wrapper">
+      <!-- this initial coordinates corresponds to the WeWork HQ -->
+      <map
+        on-create           = "mapCreated(map)"
+        center-on-latitude  = "40.7108595"
+        center-on-longitude = "-74.0085115"
+        zoom                = "16"
+      ></map>
+    </div>
+
+    <div class="map-scroller">
+      <ion-scroll>
+        <ion-list>
+          <ion-item
+            class="item"
+            ng-repeat="project in projects"
+            ui-sref="locations.detail({id:project.id})" >
+
+            {{project.name}}
+
+            <button class="button-clear" style="right:10px;position:absolute;">
+              <i class="icon ion-chevron-right"></i>
+            </button>
+          </ion-item>
+        <ion-list>
+      </ion-scroll>
+    </div>
+
+
+
+  </ion-content>
+
+</ion-view>

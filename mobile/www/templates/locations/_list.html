@@ -1,0 +1,37 @@
+<ion-view view-title="Listado de Propiedades" class="locations-list">
+
+  <ion-content class="has-header" scroll="false">
+
+    <div class="item item-input-inset item-dark">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="buscar propiedades..." ng-model="filterModel">
+      </label>
+      <button class="button button-small button-clear button-clear" ng-click="filterModel='';">clear</button>
+    </div>
+
+    <ion-scroll style="height:100%;">
+
+      <ion-list>
+
+        <ion-item
+          class="item item-thumbnail-left"
+          ng-repeat="project in projects | filter:filterModel"
+          ui-sref="locations.detail({id:project.id})" >
+
+            <img ng-src="{{project.image}}">
+            <h2>{{project.name}}</h2>
+            <p>{{project.description}}</p>
+
+            <button class="button-clear" style="top:41px;right:10px;position:absolute;">
+              <i class="icon ion-chevron-right"></i>
+            </button>
+
+        </ion-item>
+
+      </ion-list>
+
+    </ion-scroll>
+
+  </ion-content>
+
+</ion-view>

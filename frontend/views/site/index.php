@@ -1,8 +1,8 @@
 <?php
 
-/* @var $this yii\web\View */
+use backend\models\TipoInmueble;
 
-$this->title = 'My Yii Application';
+$this->title = 'QuieroCasa.com.uy';
 ?>
 <div class="site-index">
 
@@ -17,50 +17,28 @@ $this->title = 'My Yii Application';
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" href="#collapse0">
-                                    <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Price
+                                    Tipo de inmueble
                                 </a>
                             </h4>
                         </div>
                         <div id="collapse0" class="panel-collapse collapse in" >
                             <ul class="list-group">
+                                <?php foreach (TipoInmueble::find()->all() as $tipo) {?>
                                 <li class="list-group-item">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="">
-                                            0 - 1000$
+                                            <input type="checkbox" value="<?= $tipo->id ?>">
+                                            <?= $tipo->Nombre ?> 
                                         </label>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox" >
-                                        <label>
-                                            <input type="checkbox" value="">
-                                            1000$ - 2000$
-                                        </label>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox"  >
-                                        <label>
-                                            <input type="checkbox" value="">
-                                            2000$ - 6000$
-                                        </label>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox"  >
-                                        <label>
-                                            <input type="checkbox" value="">
-                                            More Than 6000$
-                                        </label>
-                                    </div>
-                                </li>
+                                <?php } ?>
                             </ul>
                         </div>
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" href="#collapse1">
-                                    <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Brand
+                                    Dormitorios
                                 </a>
                             </h4>
                         </div>
@@ -69,57 +47,21 @@ $this->title = 'My Yii Application';
                                 <li class="list-group-item">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="">
-                                            citroen
+                                            <input type="checkbox" value="1"> 1
                                         </label>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="checkbox" >
                                         <label>
-                                            <input type="checkbox" value="">
-                                            benz
+                                            <input type="checkbox" value="2"> 2
                                         </label>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox"  >
-                                        <label>
-                                            <input type="checkbox" value="">
-                                            bmw
-                                        </label>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="panel-heading" >
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapse3"><i class="indicator fa fa-caret-down" aria-hidden="true"></i> Color</a>
-                            </h4>
-                        </div>
-                        <div id="collapse3" class="panel-collapse collapse in">
-                            <ul class="list-group">
                                 <li class="list-group-item">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="">
-                                            red
-                                        </label>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox" >
-                                        <label>
-                                            <input type="checkbox" value="">
-                                            blue
-                                        </label>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox"  >
-                                        <label>
-                                            <input type="checkbox" value="">
-                                            green
+                                            <input type="checkbox" value="3"> m&aacute;s de 2
                                         </label>
                                     </div>
                                 </li>
@@ -130,7 +72,7 @@ $this->title = 'My Yii Application';
                         <a class="btn btn-default btn-success" href="#" role="button">
                             Buscar
                         </a>
-                    </div>    
+                    </div>
                 </div>
             </div>
             <div class="col-xs-8 col-sm-8">
@@ -147,7 +89,7 @@ $this->title = 'My Yii Application';
                                     <i class="glyphicon glyphicon-star"></i>
                                 </a>
                             </p>
-                        </div><!--/.col-xs-6.col-lg-4-->
+                        </div>
                     <?php }?>
                 </div>
             </div>

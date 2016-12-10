@@ -41,7 +41,7 @@ class Inmueble extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'lat', 'lon', 'cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cochera', 'patio', 'idTipo', 'idCliente'], 'required'],
+            [['nombre', 'lat', 'lon', 'cantDormitorios', 'cantBanos', 'idTipo', 'idCliente'], 'required'],
             [['lat', 'lon'], 'number'],
             [['cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cochera', 'patio', 'idTipo', 'idCliente'], 'integer'],
             [['nombre'], 'string', 'max' => 30],
