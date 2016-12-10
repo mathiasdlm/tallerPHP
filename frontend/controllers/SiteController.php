@@ -76,6 +76,12 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+     public function actionDetalle($id = null)
+    {
+        return $this->render('detalle', [
+            'model' => Inmueble::find()->where(["id" =>$id])->one()
+        ]);
+    }
     public function actionList()
     {
 
