@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
+use common\models\Inmueble;
+use common\models\InmuebleQuery;
 use common\models\LoginForm;
 use common\models\PasswordResetRequestForm;
 use common\models\ResetPasswordForm;
@@ -77,7 +79,7 @@ class SiteController extends Controller
     public function actionList()
     {
 
-        $query = Post::find()->where(['status' => 1]);
+        $query = Inmueble::find();
 
         $provider = new ActiveDataProvider([
             'query' => $query,
@@ -86,15 +88,16 @@ class SiteController extends Controller
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC,
-                    'title' => SORT_ASC, 
+                    'nombre' => SORT_DESC,
+                    'metrosTotales' => SORT_ASC, 
                 ]
             ],
         ]);
 
         // returns an array of Post objects
-        $posts = $provider->getModels();
-        return $this->render('favoritos');
+        $inmuebles = $provider->getModels();
+
+        return $this->render('list',  [ 'inmuebles' => $inmuebles, 'provider' => $provider ]);
     }
     /**
      * Displays mapa.
