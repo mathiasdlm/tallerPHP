@@ -7,12 +7,12 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\data\ActiveDataProvider;
 use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
-
+use common\models\PasswordResetRequestForm;
+use common\models\ResetPasswordForm;
+use common\models\SignupForm;
+use common\models\ContactForm;
 /**
  * Site controller
  */
@@ -74,7 +74,28 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    public function actionList()
+    {
 
+        $query = Post::find()->where(['status' => 1]);
+
+        $provider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                    'title' => SORT_ASC, 
+                ]
+            ],
+        ]);
+
+        // returns an array of Post objects
+        $posts = $provider->getModels();
+        return $this->render('favoritos');
+    }
     /**
      * Displays mapa.
      *

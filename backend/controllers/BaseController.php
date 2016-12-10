@@ -15,6 +15,7 @@ class BaseController extends Controller
         if(Yii::$app == null || Yii::$app->user->isGuest){
             return false;
         }
+        return true;
     }
 }
 

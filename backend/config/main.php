@@ -12,14 +12,20 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
-     
+    'on beforeRequest' =>function($event){ 
+     //  var_dump(Yii::$app->request->headers);
+    }, 
     'on beforeAction' =>function($event){ 
         $ctrlName = Yii::$app->controller->id;//$event->action->controller->id;
         $action = Yii::$app->controller->action->id;//$event->action->controller->module->requestedRoute;
-
+        $act = $event->action->controller->module->requestedAction;
+        //var_dump(Yii::$app->request->acceptableLanguages);
+        Yii::$app->language = Yii::$app->request->getPreferredLanguage(["es-ES", "en-Us", "pr-Br"]);
+        //var_dump(Yii::$app->user->isGuest);
+        //var_dump($ctrlName != 'site');
+        //var_dump($action != 'login');
         if (Yii::$app->user->isGuest && $ctrlName != 'site' && $action != 'login') {     
             $event->action->controller->redirect("site/login");       
-            
         }
     },
     'components' => [
@@ -48,14 +54,12 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+        ]
+        
     ],
     'params' => $params,
 ];
