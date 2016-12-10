@@ -35,8 +35,8 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Buscar', 'url' => ['/site/index']],
-        ['label' => 'Busqueda en el Mapa', 'url' => ['/site/mapa']]
+        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Busqueda', 'url' => ['/site/list']]
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup']];
@@ -60,15 +60,11 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
         <?= $content ?>
     </div>
 </div>
 
-<footer class="footer" style="position: fixed;bottom: 0;"">
+<footer class="footer" style="position: fixed;bottom: 0; right: 0; left: 0">
     <div class="container">
         <p class="pull-left">&copy; QuieroCasa.com.uy <?= date('Y') ?></p>
 
