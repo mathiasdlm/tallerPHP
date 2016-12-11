@@ -42,10 +42,12 @@ class Inmueble extends \yii\db\ActiveRecord
     {
         return 'inmueble';
     }
+
     function afterFind(){ 
         if($this->getTipo()->one() != null);
         $this->tipo = $this->getTipo()->one();
     }
+
     /**
      * @inheritdoc
      */
@@ -85,9 +87,9 @@ class Inmueble extends \yii\db\ActiveRecord
             'patio' => Yii::t('app', 'Patio'),
             'idTipo' => Yii::t('app', 'Id Tipo'),
             'idCliente' => Yii::t('app', 'Id Cliente'),
-            'upload_file1' => 'Upload File',
-            'upload_file2' => 'Upload File',
-            'upload_file3' => 'Upload File',
+            'upload_file1' => 'Upload File1',
+            'upload_file2' => 'Upload File2',
+            'upload_file3' => 'Upload File3',
         ];
     }
 
@@ -152,7 +154,7 @@ class Inmueble extends \yii\db\ActiveRecord
         return new InmuebleQuery(get_called_class());
     }
 
-    public function uploadFile() {
+    public function uploadFile1() {
         // get the uploaded file instance
         $image = UploadedFile::getInstance($this, 'upload_file1');
  
@@ -168,25 +170,25 @@ class Inmueble extends \yii\db\ActiveRecord
         return $image;
     }
  
-    public function getUploadedFile() {
+    public function getUploadedFile1() {
         // return a default image placeholder if your source avatar is not found
         $imagen1 = isset($this->imagen1) ? $this->imagen1 : 'default1.png';
         return Yii::$app->params['fileUploadUrl'] . $imagen1;
     }
 
 
-       public function uploadFile2() {
+    public function uploadFile2() {
         // get the uploaded file instance
         $image = UploadedFile::getInstance($this, 'upload_file2');
- 
+
         // if no image was uploaded abort the upload
         if (empty($image)) {
             return false;
         }
- 
+
         // generate random name for the file
         $this->imagen2 = time(). '.' . $image->extension;
- 
+
         // the uploaded image instance
         return $image;
     }
@@ -196,7 +198,8 @@ class Inmueble extends \yii\db\ActiveRecord
         $imagen2 = isset($this->imagen2) ? $this->imagen2 : 'default2.png';
         return Yii::$app->params['fileUploadUrl'] . $imagen2;
     }
-       public function uploadFile3() {
+
+    public function uploadFile3() {
         // get the uploaded file instance
         $image = UploadedFile::getInstance($this, 'upload_file3');
  

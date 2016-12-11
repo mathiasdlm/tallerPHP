@@ -90,10 +90,13 @@ if ($dbType == "mysql") {
         'cantBanos' => 'INT(2) NOT NULL',
         'metrosTotales' => 'INT(5) NOT NULL',
         'metrosEdificados' => 'INT(5) NOT NULL',
-        'cochera' => 'TINYINT(1) NOT NULL',
-        'patio' => 'TINYINT(1) NOT NULL',
+        'cochera' => 'TINYINT(1) NULL',
+        'patio' => 'TINYINT(1) NULL',
         'idTipo' => 'INT(3) NOT NULL',
         'idCliente' => 'INT(5) NOT NULL',
+        'imagen1' => 'VARCHAR(255) NULL',
+        'imagen2' => 'VARCHAR(255) NULL',
+        'imagen3' => 'VARCHAR(255) NULL',
     ], $tableOptions_mysql);
 }
 }

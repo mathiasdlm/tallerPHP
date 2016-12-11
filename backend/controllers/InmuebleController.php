@@ -75,27 +75,30 @@ class InmuebleController extends BaseController
     {
         $model = new Inmueble();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $base = explode('/backend', realpath(Yii::$app->basePath));
 
-                $upload_file1 = $model->uploadFile();
-                $upload_file2 = $model->uploadFile2();
-                $upload_file3 = $model->uploadFile3();
+            $upload_file1 = $model->uploadFile1();
+            // $upload_file2 = $model->uploadFile2();
+            // $upload_file3 = $model->uploadFile3();
 
-             if ($upload_file1 !== false) {
-                        $path = $model->getUploadedFile();
-                        $upload_file1->saveAs($path);
-                    }
+            if($model->save()){
+                if ($upload_file1 !== false) {
+                    $path = $model->getUploadedFile1();
+                    $upload_file1->saveAs($base[0] . $path);
+                }
 
-             if ($upload_file2 !== false) {
-                        $path = $model->getUploadedFile2();
-                        $upload_file2->saveAs($path);
-                    }
+                 // if ($upload_file2 !== false) {
+                 //            $path = $model->getUploadedFile2();
+                 //            $upload_file2->saveAs($path);
+                 //        }
 
-             if ($upload_file3 !== false) {
-                        $path = $model->getUploadedFile3();
-                        $upload_file13->saveAs($path);
-                    }
-                    
+                 // if ($upload_file3 !== false) {
+                 //            $path = $model->getUploadedFile3();
+                 //            $upload_file13->saveAs($path);
+                 //        } 
+            }
+            
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
