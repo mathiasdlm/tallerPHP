@@ -87,9 +87,9 @@ class Inmueble extends \yii\db\ActiveRecord
             'patio' => Yii::t('app', 'Patio'),
             'idTipo' => Yii::t('app', 'Id Tipo'),
             'idCliente' => Yii::t('app', 'Id Cliente'),
-            'upload_file1' => 'Upload File1',
-            'upload_file2' => 'Upload File2',
-            'upload_file3' => 'Upload File3',
+            'upload_file1' => 'Agregar primera imagen:',
+            'upload_file2' => 'Agregar suganda imagen:',
+            'upload_file3' => 'Agregar tercer imagen: ',
         ];
     }
 

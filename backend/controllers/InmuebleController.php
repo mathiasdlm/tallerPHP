@@ -79,8 +79,8 @@ class InmuebleController extends BaseController
             $base = explode('/backend', realpath(Yii::$app->basePath));
 
             $upload_file1 = $model->uploadFile1();
-            // $upload_file2 = $model->uploadFile2();
-            // $upload_file3 = $model->uploadFile3();
+            $upload_file2 = $model->uploadFile2();
+            $upload_file3 = $model->uploadFile3();
 
             if($model->save()){
                 if ($upload_file1 !== false) {
@@ -88,15 +88,15 @@ class InmuebleController extends BaseController
                     $upload_file1->saveAs($base[0] . $path);
                 }
 
-                 // if ($upload_file2 !== false) {
-                 //            $path = $model->getUploadedFile2();
-                 //            $upload_file2->saveAs($path);
-                 //        }
+                if ($upload_file2 !== false) {
+                    $path = $model->getUploadedFile2();
+                    $upload_file2->saveAs($base[0] . $path);
+                }
 
-                 // if ($upload_file3 !== false) {
-                 //            $path = $model->getUploadedFile3();
-                 //            $upload_file13->saveAs($path);
-                 //        } 
+                if ($upload_file3 !== false) {
+                    $path = $model->getUploadedFile3();
+                    $upload_file3->saveAs($base[0] . $path);
+                } 
             }
             
             return $this->redirect(['view', 'id' => $model->id]);
@@ -118,6 +118,28 @@ class InmuebleController extends BaseController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+             $base = explode('/backend', realpath(Yii::$app->basePath));
+
+            $upload_file1 = $model->uploadFile1();
+            $upload_file2 = $model->uploadFile2();
+            $upload_file3 = $model->uploadFile3();
+
+            if($model->save()){
+                if ($upload_file1 !== false) {
+                    $path = $model->getUploadedFile1();
+                    $upload_file1->saveAs($base[0] . $path);
+                }
+
+                if ($upload_file2 !== false) {
+                    $path = $model->getUploadedFile2();
+                    $upload_file2->saveAs($base[0] . $path);
+                }
+
+                if ($upload_file3 !== false) {
+                    $path = $model->getUploadedFile3();
+                    $upload_file3->saveAs($base[0] . $path);
+                } 
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
