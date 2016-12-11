@@ -68,6 +68,7 @@ class Inmueble extends \yii\db\ActiveRecord
             'patio' => 'Patio',
             'idTipo' => 'Id Tipo',
             'idCliente' => 'Id Cliente',
+          
         ];
     }
 

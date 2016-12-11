@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "inmueble".
@@ -30,6 +31,10 @@ use Yii;
 class Inmueble extends \yii\db\ActiveRecord
 {
     public $tipo;
+    public $upload_file1;
+    public $upload_file2;
+    public $upload_file3;
+
     /**
      * @inheritdoc
      */
@@ -53,7 +58,12 @@ class Inmueble extends \yii\db\ActiveRecord
             [['nombre'], 'string', 'max' => 30],
             [['idTipo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoInmueble::className(), 'targetAttribute' => ['idTipo' => 'id']],
             [['idCliente'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['idCliente' => 'id']],
-             [['tipo',], 'safe'],
+            [['tipo',], 'safe'],
+            [['imagen1','imagen2','imagen3'], 'string', 'max' => 255],
+            [['upload_file1'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png',],
+            [['upload_file2'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png',],
+            [['upload_file3'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png',],
+
         ];
     }
 
@@ -75,6 +85,9 @@ class Inmueble extends \yii\db\ActiveRecord
             'patio' => Yii::t('app', 'Patio'),
             'idTipo' => Yii::t('app', 'Id Tipo'),
             'idCliente' => Yii::t('app', 'Id Cliente'),
+            'upload_file1' => 'Upload File',
+            'upload_file2' => 'Upload File',
+            'upload_file3' => 'Upload File',
         ];
     }
 
@@ -120,6 +133,7 @@ class Inmueble extends \yii\db\ActiveRecord
     {
         return $this->hasMany(InmuebleCliente::className(), ['idInmueble' => 'id']);
     }
+   
 
     /**
      * @return \yii\db\ActiveQuery
@@ -136,5 +150,71 @@ class Inmueble extends \yii\db\ActiveRecord
     public static function find()
     {
         return new InmuebleQuery(get_called_class());
+    }
+
+    public function uploadFile() {
+        // get the uploaded file instance
+        $image = UploadedFile::getInstance($this, 'upload_file1');
+ 
+        // if no image was uploaded abort the upload
+        if (empty($image)) {
+            return false;
+        }
+ 
+        // generate random name for the file
+        $this->imagen1 = time(). '.' . $image->extension;
+ 
+        // the uploaded image instance
+        return $image;
+    }
+ 
+    public function getUploadedFile() {
+        // return a default image placeholder if your source avatar is not found
+        $imagen1 = isset($this->imagen1) ? $this->imagen1 : 'default1.png';
+        return Yii::$app->params['fileUploadUrl'] . $imagen1;
+    }
+
+
+       public function uploadFile2() {
+        // get the uploaded file instance
+        $image = UploadedFile::getInstance($this, 'upload_file2');
+ 
+        // if no image was uploaded abort the upload
+        if (empty($image)) {
+            return false;
+        }
+ 
+        // generate random name for the file
+        $this->imagen2 = time(). '.' . $image->extension;
+ 
+        // the uploaded image instance
+        return $image;
+    }
+ 
+    public function getUploadedFile2() {
+        // return a default image placeholder if your source avatar is not found
+        $imagen2 = isset($this->imagen2) ? $this->imagen2 : 'default2.png';
+        return Yii::$app->params['fileUploadUrl'] . $imagen2;
+    }
+       public function uploadFile3() {
+        // get the uploaded file instance
+        $image = UploadedFile::getInstance($this, 'upload_file3');
+ 
+        // if no image was uploaded abort the upload
+        if (empty($image)) {
+            return false;
+        }
+ 
+        // generate random name for the file
+        $this->imagen3 = time(). '.' . $image->extension;
+ 
+        // the uploaded image instance
+        return $image;
+    }
+ 
+    public function getUploadedFile3() {
+        // return a default image placeholder if your source avatar is not found
+        $imagen3 = isset($this->imagen3) ? $this->imagen3 : 'default3.png';
+        return Yii::$app->params['fileUploadUrl'] . $imagen3;
     }
 }

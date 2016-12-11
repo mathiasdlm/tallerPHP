@@ -15,6 +15,7 @@ use yii\filters\VerbFilter;
 class InmuebleController extends BaseController
 {
 
+
     public function dropDown()
     {
 
@@ -75,6 +76,26 @@ class InmuebleController extends BaseController
         $model = new Inmueble();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+                $upload_file1 = $model->uploadFile();
+                $upload_file2 = $model->uploadFile2();
+                $upload_file3 = $model->uploadFile3();
+
+             if ($upload_file1 !== false) {
+                        $path = $model->getUploadedFile();
+                        $upload_file1->saveAs($path);
+                    }
+
+             if ($upload_file2 !== false) {
+                        $path = $model->getUploadedFile2();
+                        $upload_file2->saveAs($path);
+                    }
+
+             if ($upload_file3 !== false) {
+                        $path = $model->getUploadedFile3();
+                        $upload_file13->saveAs($path);
+                    }
+                    
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
