@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\AccesRule;
+use yii\web\ForbiddenHttpException;
 
 
 /**
@@ -23,15 +24,15 @@ class AdminController extends BaseController
      */
     public function behaviors()
     {
-     return [
-        
-        'verbs' => [
-            'class' => VerbFilter::className(),
-            'actions' => [
-                'logout' => ['post'],
+      return [
+           
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
             ],
-        ],
-    ];
+        ];
     }
 
     /**
@@ -69,7 +70,9 @@ class AdminController extends BaseController
     public function actionCreate()
     {
 
-        $model = new SignupForm();
+        if(Yii::$app->user->can('admin-create')){
+
+              $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -80,6 +83,16 @@ class AdminController extends BaseController
             return $this->render('create', [
                 'model' => $model,
             ]);
+
+
+        }else{
+
+            throw new ForbiddenHttpException;
+            
+
+        }
+
+      
         
     }
 

@@ -27,9 +27,9 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
-    //const ROLE_USER = 10;
-    const ROLE_GESTION = 20;
-    const ROLE_ADMIN = 30;
+
+
+   
     
     
     /**
@@ -225,5 +225,5 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-
+ 
 }

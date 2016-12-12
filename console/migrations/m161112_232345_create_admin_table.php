@@ -126,7 +126,7 @@ if ($dbType == "mysql") {
         'status' => 'SMALLINT(6) NOT NULL DEFAULT \'10\'',
         'created_at' => 'INT(11) NOT NULL',
         'updated_at' => 'INT(11) NOT NULL',
-        'activado' => 'TINYINT(1) NOT NULL',
+        
     ], $tableOptions_mysql);
 }
 }
