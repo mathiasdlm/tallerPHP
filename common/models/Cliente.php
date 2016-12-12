@@ -95,4 +95,9 @@ class Cliente extends \yii\db\ActiveRecord
     {
         return new ClienteQuery(get_called_class());
     }
+
+    public function extraFields()
+    {
+        return ['inmuebles'];
+    }
 }
