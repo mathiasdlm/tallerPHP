@@ -104,14 +104,20 @@ class AdminController extends BaseController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('admin-create')){
+
+            $model = $this->findModel($id);
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        }else{
+                 throw new ForbiddenHttpException;
         }
     }
 
@@ -123,9 +129,13 @@ class AdminController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->user->can('admin-create')){
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }else{
+            throw new ForbiddenHttpException;
+        }
     }
 
     /**
