@@ -23,12 +23,13 @@ $this->title = 'Inmuebles';
 
             'id',
             'nombre',
+            'cantBanos',
             'cantDormitorios',
             'patio',
             'cochera',
             //'lat',
             //'lon',
-            // 'cantBanos',
+            
             // 'metrosTotales',
             // 'metrosEdificados',
             // 'cochera',

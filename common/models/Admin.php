@@ -26,6 +26,12 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+
+    //const ROLE_USER = 10;
+    const ROLE_GESTION = 20;
+    const ROLE_ADMIN = 30;
+    
+    
     /**
      * @inheritdoc
      */
@@ -44,7 +50,7 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            [['rol'], 'string', 'max' => 20],
+            [['rol'], 'integer'],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['username'], 'unique'],
@@ -72,6 +78,8 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
             'rol' => Yii::t('app', 'Rol'),
         ];
     }
+
+  
 
     /**
      * @inheritdoc
@@ -216,4 +224,6 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+
 }

@@ -27,6 +27,7 @@ use yii\web\IdentityInterface;
  */
 class user extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -220,4 +221,5 @@ class user extends \yii\db\ActiveRecord
     {
         $this->password_reset_token = null;
     }
+ 
 }

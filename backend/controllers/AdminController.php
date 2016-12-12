@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\AccesRule;
 
 
 /**
@@ -17,19 +18,20 @@ use yii\filters\AccessControl;
  */
 class AdminController extends BaseController
 {
-    /**
+    /**x
      * @inheritdoc
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
+     return [
+        
+        'verbs' => [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                'logout' => ['post'],
             ],
-        ];
+        ],
+    ];
     }
 
     /**

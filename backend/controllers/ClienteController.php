@@ -4,6 +4,9 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Cliente;
+use common\models\Admin;
+use yii\helpers\AccessControl;
+
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -19,14 +22,15 @@ class ClienteController extends BaseController
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
+        return[
+
+        'verbs' => [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                'delete' => ['post'],
             ],
-        ];
+        ],
+    ];
     }
     
     /**

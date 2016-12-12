@@ -1,7 +1,6 @@
 <?php
 
 
-use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -23,7 +22,7 @@ $this->title = 'Alta Administrador';
 
     <p>Please fill out the following fields to signup:</p>
 
-    <div class="row">
+   <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
