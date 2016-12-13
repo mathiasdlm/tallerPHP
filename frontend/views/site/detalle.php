@@ -18,7 +18,7 @@ $this->title = 'Informacion Inmueble';
   }
  
     .mapa-detalle{
-        margin-bottom: 50px;
+        margin: 50px;
     }
 </style>
 <div class="inmueble-view">
