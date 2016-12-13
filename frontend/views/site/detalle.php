@@ -30,26 +30,22 @@ $this->title = 'Informacion Inmueble';
 
             <?php if(!isset($fav)){ ?> 
                 <?php $form = ActiveForm::begin(['action'=>'favorito', 'method'=>'post','options' => ['data-pjax' => true ]]); ?>
-                    <?= $form->field($model, 'id')->hiddenInput()->label(false)  ?>
+                    <?= $form->field($inm, 'id')->hiddenInput()->label(false)  ?>
                     <?= Html::submitButton('<i class="glyphicon glyphicon-star"></i>', ['class' => 'btn btn-default pull-right', 'style'=>'    margin: 10px;']) ?>
                 <?php ActiveForm::end(); ?>
  
                 <?php } else { ?>
                     <?php $form = ActiveForm::begin(['action'=>'dislike', 'method'=>'post','options' => ['data-pjax' => true ]]); ?>
-                        <?= $form->field($model, 'id')->hiddenInput()->label(false)  ?>
+                        <?= $form->field($inm, 'id')->hiddenInput()->label(false)  ?>
             <?= Html::submitButton('<i class="glyphicon glyphicon-star"></i>', ['class' => 'btn btn-default pull-right', 'style'=>'    margin: 10px;background-color: #009922;']) ?>
                     <?php ActiveForm::end(); ?>
                 <?php } ?> 
         <?php Pjax::end()?>
 
     <?php }?>
-    <div class="mapa-detalle container-fluid">
-        <div class="col-xs-12 col-md-12">
-            <div id="map"></div>
-        </div>
-    </div>
-    <?= DetailView::widget([
-        'model' => $model,
+    <h1><?=$inm->nombre?></h1>
+     <?= DetailView::widget([
+        'model' => $inm,
         'attributes' => [
             'nombre',
             'cantDormitorios',
@@ -60,12 +56,26 @@ $this->title = 'Informacion Inmueble';
             'patio',
         ],
     ]) ?>
-    
+    <h2>Contacto</h2>
+    <?= DetailView::widget([
+        'model' => $cliente,
+        'attributes' => [
+            'nombre',
+            'telefono',
+            'email'
+        ],
+    ]) ?>
+    <h2>Imagenes</h2>
      <?= Carousel::widget([
         'items' => $images
     ]);?>
-    <?= HTML::activeHiddenInput($model, 'lon', ["id"=>"lon"]) ?>
-    <?= HTML::activeHiddenInput($model, 'lat', ["id"=>"lat"]) ?>
+    <div class="mapa-detalle container-fluid">
+        <div class="col-xs-12 col-md-12">
+            <div id="map"></div>
+        </div>
+    </div>
+    <?= HTML::activeHiddenInput($inm, 'lon', ["id"=>"lon"]) ?>
+    <?= HTML::activeHiddenInput($inm, 'lat', ["id"=>"lat"]) ?>
     <script type="text/javascript">
         var lat = parseInt(document.getElementById('lat').value); 
         var lon = parseInt(document.getElementById('lat').value);
@@ -80,7 +90,7 @@ $this->title = 'Informacion Inmueble';
           
             var contentString = 
             '<div id="content">'+
-              '<h4><?php echo $model->nombre ?></h4>' +
+              '<h4><?php echo $inm->nombre ?></h4>' +
             '</div>';
 
             var infowindow = new google.maps.InfoWindow({
@@ -89,7 +99,7 @@ $this->title = 'Informacion Inmueble';
 
             var marker = new google.maps.Marker({
               map       : map,
-              title     : '<?php echo $model->nombre ?>',
+              title     : '<?php echo $inm->nombre ?>',
               position  : { lat : lat, lng : lon },
             });
 
