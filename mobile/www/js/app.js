@@ -3,7 +3,7 @@ angular.module('app', [
   'app.login',
   'app.map',
 ]).constant("CONFIG", {
-  "URL" : "http://localhost",
+  "URL" : "/api/",
 }).
 run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,15 +32,15 @@ run(function($ionicPlatform) {
     .state('locations', {
       url: '/locations',
       abstract: true,
-      templateUrl: "templates/locations/abstract.html",
-      controller: 'LocationsCtrl'
+      templateUrl: "templates/locations/abstract.html"
     })
 
     .state('locations.view', {
       url: '/view',
       views: {
         'view-container': {
-          templateUrl: 'templates/locations/_view.html'
+          templateUrl: 'templates/locations/_view.html',
+          controller: 'LocationsCtrl'
         }
       }
     })
@@ -48,7 +48,8 @@ run(function($ionicPlatform) {
       url: '/list',
       views: {
         'view-container': {
-          templateUrl: 'templates/locations/_list.html'
+          templateUrl: 'templates/locations/_list.html',
+          controller: 'LocationsCtrl'
         }
       }
     })
@@ -60,6 +61,11 @@ run(function($ionicPlatform) {
           controller: 'MapDetailCtrl'
         }
       }
+    })
+    .state('fav', {
+      url: '/fav',
+      controller: 'FavoritoCtrl',
+      templateUrl: "templates/locations/_fav.html"
     })
   ;
 

@@ -31,8 +31,8 @@ $this->title = 'Inmuebles';
                             'metrosEdificados:ntext',
                             'cantBanos:ntext',
                             [
-                                'attribute' => 'tipo',
-                                'value' => 'tipo.Nombre',
+                                'attribute' => 'tipoFiltro',
+                                'value' => 'tipoFiltro.Nombre',
                                 'filter'=>ArrayHelper::map(TipoInmueble::find()->asArray()->all(), 'id', 'Nombre'),
                             ],
                             [

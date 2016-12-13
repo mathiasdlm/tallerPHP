@@ -1,6 +1,7 @@
 <ion-view view-title="Propiedades" hide-back-button="true">
 
   <ion-nav-buttons side="secondary">
+    <button class="button button-clear icon-left icon button-icon ion-ios-bookmarks-outline" ng-click="viewAllFavs()"></button>
     <button class="button button-clear icon-right icon button-icon ion-ios-list-outline" ng-click="viewAllProjects()"></button>
   </ion-nav-buttons>
 
@@ -10,9 +11,9 @@
       <!-- this initial coordinates corresponds to the WeWork HQ -->
       <map
         on-create           = "mapCreated(map)"
-        center-on-latitude  = "40.7108595"
-        center-on-longitude = "-74.0085115"
-        zoom                = "16"
+        center-on-latitude  = "-34.909800499999996"
+        center-on-longitude = "-56.151202899999994"
+        zoom                = "13"
       ></map>
     </div>
 
@@ -21,10 +22,10 @@
         <ion-list>
           <ion-item
             class="item"
-            ng-repeat="project in projects"
-            ui-sref="locations.detail({id:project.id})" >
+            ng-repeat="inmueble in inmuebles"
+            ui-sref="locations.detail({ id : inmueble.id })" >
 
-            {{project.name}}
+            {{inmueble.nombre}}
 
             <button class="button-clear" style="right:10px;position:absolute;">
               <i class="icon ion-chevron-right"></i>
