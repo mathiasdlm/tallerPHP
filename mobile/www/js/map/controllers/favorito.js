@@ -1,32 +1,9 @@
 
 angular.module('app.map')
 
-  .controller('LocationsCtrl', function ($scope, InmuebleService, $ionicLoading, $state) {
-    $scope.mapCreated = function(map) {
-      $scope.map = map;
-    };
-
-    $scope.viewAllProjects = function(){
-      $state.go('locations.list');
-    };
-
-    $scope.viewAllFavs = function(){
-      $state.go('fav');
-    };
-
+  .controller('FavoritoCtrl', function ($scope, FavoritoService, $ionicLoading, $state) {
     ionic.Platform.ready(function(){
-      navigator.geolocation.getCurrentPosition(function (pos) {
-        if(!$scope.map){
-          return;
-        }
-
-        $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-        $scope.map.setZoom(13);
-      }, function (error) {
-        alert('Unable to get location: ' + error.message);
-      });
-
-      InmuebleService.getAll().then(function(collection) {
+      FavoritoService.getAll(1).then(function(collection) {
         var prev_infowindow = null;
         angular.forEach(collection, function(inmueble) {
           inmueble['imagen'] = 'http://y2aa-uploads.dev/' + (inmueble.imagen1 || inmueble.imagen2 || inmueble.imagen3);

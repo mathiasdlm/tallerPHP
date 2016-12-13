@@ -1,4 +1,4 @@
-<ion-view view-title="Propiedades" class="locations-list">
+<ion-view view-title="Favoritos" class="locations-list">
 
   <ion-nav-bar class="bar bar-dark bar-special" >
     <ion-nav-back-button class="button back-button buttons button-light__ button-clear header-item">Volver</ion-nav-back-button>
@@ -18,7 +18,7 @@
       <ion-list>
 
         <ion-item
-          class="item item-thumbnail-left"
+          class="item item-thumbnail-left item-icon-right"
           ng-repeat="inmueble in inmuebles | filter:filterModel"
           ui-sref="locations.detail({id:inmueble.id})" >
 

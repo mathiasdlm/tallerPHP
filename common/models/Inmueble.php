@@ -30,7 +30,7 @@ use yii\web\UploadedFile;
  */
 class Inmueble extends \yii\db\ActiveRecord
 {
-    public $tipo;
+    public $tipoFiltro;
     public $upload_file1;
     public $upload_file2;
     public $upload_file3;
@@ -43,9 +43,14 @@ class Inmueble extends \yii\db\ActiveRecord
         return 'inmueble';
     }
 
+    public function fields()
+    {
+        return ['id', 'nombre', 'lat', 'lon', 'cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cliente', 'tipo', 'cochera', 'patio', 'imagen1', 'imagen2', 'imagen3'];
+    }
+
     function afterFind(){ 
         if($this->getTipo()->one() != null);
-        $this->tipo = $this->getTipo()->one();
+        $this->tipoFiltro = $this->getTipo()->one();
     }
 
     /**
@@ -61,12 +66,11 @@ class Inmueble extends \yii\db\ActiveRecord
             [['precioAlquiler','precioVenta'], 'integer'],
             [['idTipo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoInmueble::className(), 'targetAttribute' => ['idTipo' => 'id']],
             [['idCliente'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['idCliente' => 'id']],
-            [['tipo',], 'safe'],
+            [['tipoFiltro'], 'safe'],
             [['imagen1','imagen2','imagen3'], 'string', 'max' => 255],
             [['upload_file1'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png',],
             [['upload_file2'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png',],
             [['upload_file3'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png',],
-
         ];
     }
 
@@ -114,21 +118,15 @@ class Inmueble extends \yii\db\ActiveRecord
         return $this->hasMany(User::className(), ['id' => 'idUser'])->viaTable('favoritos', ['idInmueble' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdTipo0()
-    {
-        return $this->hasOne(TipoInmueble::className(), ['id' => 'idTipo']);
-    }
     public function getTipo()
     {
         return $this->hasOne(TipoInmueble::className(), ['id' => 'idTipo']);
     }
+
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdCliente0()
+    public function getCliente()
     {
         return $this->hasOne(Cliente::className(), ['id' => 'idCliente']);
     }
@@ -141,7 +139,6 @@ class Inmueble extends \yii\db\ActiveRecord
         return $this->hasMany(InmuebleCliente::className(), ['idInmueble' => 'id']);
     }
    
-
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -169,7 +166,7 @@ class Inmueble extends \yii\db\ActiveRecord
         }
  
         // generate random name for the file
-        $this->imagen1 = time(). '.' . $image->extension;
+        $this->imagen1 = time(). '1.' . $image->extension;
  
         // the uploaded image instance
         return $image;
@@ -192,7 +189,7 @@ class Inmueble extends \yii\db\ActiveRecord
         }
 
         // generate random name for the file
-        $this->imagen2 = time(). '.' . $image->extension;
+        $this->imagen2 = time(). '2.' . $image->extension;
 
         // the uploaded image instance
         return $image;
@@ -214,7 +211,7 @@ class Inmueble extends \yii\db\ActiveRecord
         }
  
         // generate random name for the file
-        $this->imagen3 = time(). '.' . $image->extension;
+        $this->imagen3 = time(). '3.' . $image->extension;
  
         // the uploaded image instance
         return $image;
