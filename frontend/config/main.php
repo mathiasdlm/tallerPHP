@@ -3,7 +3,14 @@ $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
     require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/params-local.php'),[
+        'FB_APP_ID'=> '1192158787516310', 
+        'FB_SECRET_KEY' => '6423271b116175ef432b060631f5003c',
+        'FB_API_KEY' => '<api key>',
+        //4e83247207898958ba0f109feef6e315
+        // url of user-controller / handshake action. including your domain etc. full valid url.
+        'FB_HANDSHAKE_URL' => "http://localhost:8089/frontend/web/site/fbhandshake"
+    ]
 );
 
 return [
