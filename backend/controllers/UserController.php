@@ -94,6 +94,8 @@ class UserController extends BaseController
             }else{
                     return $this->render('update', ['model' => $model,]);
             }
+        }else{
+            throw new ForbiddenHttpException; 
         }
     }
 
