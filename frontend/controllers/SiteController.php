@@ -16,7 +16,8 @@ use common\models\ResetPasswordForm;
 use common\models\SignupForm;
 use common\models\ContactForm;
 use common\models\InmuebleSearch;
-use common\models\Favoritos;
+use common\models\Favoritos; 
+use common\models\User; 
 /**
  * Site controller
  */
@@ -78,18 +79,61 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    public function actionFbhandshake(){
+        if( Yii::$app->user->isGuest){
+            
+        
+            if (!isset($_REQUEST['code']))
+                {
+                        if (isset($_REQUEST['error_description']))
+                                $error = $_REQUEST['error_description'];
+                        else
+                                $error = "Auth error";
+                        throw new CHttpException(403, $error);
+                }
+                        
+                        
+            $identity = new User();
+            $identity->handshake_code = $_REQUEST['code'];         
+            $identity->return_url = Yii::$app->params['FB_HANDSHAKE_URL'];
+            $auth = $identity->authenticate();
+            if ($auth) 
+                {
+                   $this->redirect('index');  
+                }else{
+                     $this->redirect('index');
+                } 
+
+        }else{
+               $this->redirect('index');
+        }
+    }
+    public function actionFblogin()
+    {
+        if( Yii::$app->user->isGuest){
+            $this->redirect(
+                            "https://graph.facebook.com/oauth/authorize" 
+                            ."?type=web_server"
+                            ."&redirect_uri=".Yii::$app->params['FB_HANDSHAKE_URL']
+                            ."&client_id=".Yii::$app->params['FB_APP_ID']
+                    );
+        }else{
+            $this->redirect('index');
+        }
+    }
      public function actionView($id = null)
     { 
         $fav = null;
         if(!Yii::$app->user->isGuest){
-            $id = Yii::$app->request->post('Inmueble')['id'];
+
             $usrId = Yii::$app->user->identity->id;
-            $fav = Favoritos::find()->where(["idInmueble" => $id, "idUser" => $usrId])->one();
-        }
-        return $this->render('detalle', [
-            'fav' => $fav,
-            'model' => Inmueble::find()->where(["id" =>$id])->one()
-        ]);
+            $fav = Favoritos::find()->where(["idInmueble" => $id, 'idUser'=>$usrId])->one();
+        } 
+            return $this->render('detalle', [
+                'fav' => $fav,
+                'model' => Inmueble::find()->where(["id" =>$id])->one()
+            ]);
+        
     }
     public function actionList()
     { 
@@ -199,6 +243,23 @@ class SiteController extends Controller
         }else{
             return $this->actionLogin();            
         }
+    }
+    public function actionDislike(){
+        if(!Yii::$app->user->isGuest && Yii::$app->request->isPost){
+
+            $id = Yii::$app->request->post('Inmueble')['id'];
+            $usrId = Yii::$app->user->identity->id;
+
+            $fav = Favoritos::find()->where(["idInmueble" => $id, "idUser" => $usrId])->one();
+    
+            $fav->delete();
+ 
+            return $this->render('detalle', [
+                    'fav' => null,
+                    'model' => Inmueble::find()->where(["id" =>$id])->one()]);
+            }
+            
+        
     }
     public function actionFavorito()
     {   
