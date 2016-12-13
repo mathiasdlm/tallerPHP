@@ -29,7 +29,20 @@ $this->title = 'Listado de Administradores';
             // 'status',
             // 'created_at',
             // 'updated_at',
-             'rol',
+             'rol'=>[
+            'attribute' => 'rol',
+            'value'=> function ($model) {
+                if($model->rol == 10)
+                {
+
+                    return 'Administrador';
+
+                } 
+                else {
+                    return 'Gestion';
+                }
+              },
+            ],
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}'],
         ],
     ]); ?>

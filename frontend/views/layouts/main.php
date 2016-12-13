@@ -35,18 +35,18 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Busqueda', 'url' => ['/site/list']]
+        ['label' => Yii::t('app','Home'), 'url' => ['/site/index']],
+        ['label' => Yii::t('app','Search'), 'url' => ['/site/list']]
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Iniciar sesion', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('app','Sign up'), 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => Yii::t('app','Sign in'), 'url' => ['/site/login']];
     } else {
-        $menuItems[] = ['label' => 'Favoritos', 'url' => ['/site/favoritos']];
+        $menuItems[] = ['label' => Yii::t('app','Starred'), 'url' => ['/site/favoritos']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                Yii::t('app','Logout').'(' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
