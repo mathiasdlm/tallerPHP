@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -35,6 +36,7 @@ class UserController extends BaseController
      */
     public function actionIndex()
     {
+       
         $dataProvider = new ActiveDataProvider([
             'query' => User::find(),
         ]);
@@ -42,6 +44,7 @@ class UserController extends BaseController
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
+   
     }
 
     /**
@@ -63,14 +66,15 @@ class UserController extends BaseController
      */
     public function actionCreate()
     {
-        $model = new User();
+        if(Yii::$app->user->identity->rol === 10){
+            $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+                    return $this->render('create', ['model' => $model,]);}
+        }else{
+                throw new ForbiddenHttpException;
         }
     }
 
@@ -82,14 +86,14 @@ class UserController extends BaseController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if(Yii::$app->user->identity->rol === 10){
+            $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+                    return $this->render('update', ['model' => $model,]);
+            }
         }
     }
 
@@ -101,9 +105,13 @@ class UserController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->identity->rol === 10){
+            $this->findModel($id)->delete();
+            return $this->redirect(['index']);
+        }else{
+            throw new ForbiddenHttpException;
+            
+        }
     }
 
     /**
