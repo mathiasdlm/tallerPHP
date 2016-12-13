@@ -122,6 +122,7 @@ class AdminController extends BaseController
             $this->findModel($id)->delete();
 
             return $this->redirect(['index']);
+            
         }else{
             throw new ForbiddenHttpException;
         }

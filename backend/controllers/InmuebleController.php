@@ -8,22 +8,13 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * InmuebleController implements the CRUD actions for Inmueble model.
  */
 class InmuebleController extends BaseController
 {
-
-
-    public function dropDown()
-    {
-
-    $items = ArrayHelper::map(Inmueble::find()->all(), 'idCliente','nombre');
-
-    return $this->render('view',['model'=>$model, 'items'=>$items]);
-
-    }
     /**
      * @inheritdoc
      */
@@ -73,37 +64,42 @@ class InmuebleController extends BaseController
      */
     public function actionCreate()
     {
-        $model = new Inmueble();
+        if(Yii::$app->user->identity->rol === 10 || Yii::$app->user->identity->rol === 20){
 
-        if ($model->load(Yii::$app->request->post())) {
-            $base = explode('/backend', realpath(Yii::$app->basePath));
+            $model = new Inmueble();
 
-            $upload_file1 = $model->uploadFile1();
-            $upload_file2 = $model->uploadFile2();
-            $upload_file3 = $model->uploadFile3();
+            if ($model->load(Yii::$app->request->post())) {
+                $base = explode('/backend', realpath(Yii::$app->basePath));
 
-            if($model->save()){
-                if ($upload_file1 !== false) {
-                    $path = $model->getUploadedFile1();
-                    $upload_file1->saveAs($base[0] . $path);
+                $upload_file1 = $model->uploadFile1();
+                $upload_file2 = $model->uploadFile2();
+                $upload_file3 = $model->uploadFile3();
+
+                if($model->save()){
+                    if ($upload_file1 !== false) {
+                        $path = $model->getUploadedFile1();
+                        $upload_file1->saveAs($base[0] . $path);
+                    }
+
+                    if ($upload_file2 !== false) {
+                        $path = $model->getUploadedFile2();
+                        $upload_file2->saveAs($base[0] . $path);
+                    }
+
+                    if ($upload_file3 !== false) {
+                        $path = $model->getUploadedFile3();
+                        $upload_file3->saveAs($base[0] . $path);
+                    } 
                 }
-
-                if ($upload_file2 !== false) {
-                    $path = $model->getUploadedFile2();
-                    $upload_file2->saveAs($base[0] . $path);
-                }
-
-                if ($upload_file3 !== false) {
-                    $path = $model->getUploadedFile3();
-                    $upload_file3->saveAs($base[0] . $path);
-                } 
+                
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
             }
-            
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        }else{
+                throw new ForbiddenHttpException;
         }
     }
 
@@ -115,36 +111,41 @@ class InmuebleController extends BaseController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if(Yii::$app->user->identity->rol === 10 || Yii::$app->user->identity->rol === 20){
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-             $base = explode('/backend', realpath(Yii::$app->basePath));
+            $model = $this->findModel($id);
 
-            $upload_file1 = $model->uploadFile1();
-            $upload_file2 = $model->uploadFile2();
-            $upload_file3 = $model->uploadFile3();
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                 $base = explode('/backend', realpath(Yii::$app->basePath));
 
-            if($model->save()){
-                if ($upload_file1 !== false) {
-                    $path = $model->getUploadedFile1();
-                    $upload_file1->saveAs($base[0] . $path);
+                $upload_file1 = $model->uploadFile1();
+                $upload_file2 = $model->uploadFile2();
+                $upload_file3 = $model->uploadFile3();
+
+                if($model->save()){
+                    if ($upload_file1 !== false) {
+                        $path = $model->getUploadedFile1();
+                        $upload_file1->saveAs($base[0] . $path);
+                    }
+
+                    if ($upload_file2 !== false) {
+                        $path = $model->getUploadedFile2();
+                        $upload_file2->saveAs($base[0] . $path);
+                    }
+
+                    if ($upload_file3 !== false) {
+                        $path = $model->getUploadedFile3();
+                        $upload_file3->saveAs($base[0] . $path);
+                    } 
                 }
-
-                if ($upload_file2 !== false) {
-                    $path = $model->getUploadedFile2();
-                    $upload_file2->saveAs($base[0] . $path);
-                }
-
-                if ($upload_file3 !== false) {
-                    $path = $model->getUploadedFile3();
-                    $upload_file3->saveAs($base[0] . $path);
-                } 
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
             }
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        }else{
+                throw new ForbiddenHttpException;
         }
     }
 
@@ -156,9 +157,14 @@ class InmuebleController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->user->identity->rol === 10){
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }else{
+                throw new ForbiddenHttpException;
+        }
+
     }
 
     /**
@@ -175,5 +181,10 @@ class InmuebleController extends BaseController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+     public function dropDown()
+    {    
+        $items = ArrayHelper::map(Inmueble::find()->all(), 'idCliente','nombre');
+            return $this->render('view',['model'=>$model, 'items'=>$items]);
     }
 }

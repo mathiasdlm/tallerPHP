@@ -64,7 +64,6 @@ class HorarioAtencionController extends BaseController
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->identity->rol === 10){
         $model = new HorarioAtencion();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -74,9 +73,7 @@ class HorarioAtencionController extends BaseController
                 'model' => $model,
             ]);
         }
-    }else{
-        throw new ForbiddenHttpException;
-    }
+  
     }
 
     /**
