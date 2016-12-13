@@ -68,7 +68,7 @@ class ClienteController extends BaseController
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->can('admin-create')){
+        if(Yii::$app->user->identity->rol === 10 || Yii::$app->user->identity->rol === 20){
                 $model = new Cliente();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -91,21 +91,19 @@ class ClienteController extends BaseController
      */
     public function actionUpdate($id)
     {
-        if(Yii::$app->user->can('admin-create')){
+        if(Yii::$app->user->identity->rol === 10 || Yii::$app->user->identity->rol === 20){
 
-        $model = $this->findModel($id);
+            $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-        else{
-                              throw new ForbiddenHttpException;
-
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                    return $this->render('update', [
+                        'model' => $model,
+                    ]);
+            }
+        }else{
+              throw new ForbiddenHttpException;
         }
     
     }
@@ -118,9 +116,14 @@ class ClienteController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->user->identity->rol === 10){
 
-        return $this->redirect(['index']);
+            $this->findModel($id)->delete();
+
+            return $this->redirect(['index']);
+        }else{
+                throw new ForbiddenHttpException;
+        }
     }
 
     /**
