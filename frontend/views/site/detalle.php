@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\Pjax;
 use yii\widgets\ActiveForm;
+use yii\bootstrap\Carousel;
 /* @var $this yii\web\View */
 /* @var $model app\models\Cliente */
 
@@ -15,6 +16,10 @@ $this->title = 'Informacion Inmueble';
   #map {
     height: 560px;
   }
+ 
+    .mapa-detalle{
+        margin-bottom: 50px;
+    }
 </style>
 <div class="inmueble-view">
 
@@ -38,6 +43,11 @@ $this->title = 'Informacion Inmueble';
         <?php Pjax::end()?>
 
     <?php }?>
+    <div class="mapa-detalle container-fluid">
+        <div class="col-xs-12 col-md-12">
+            <div id="map"></div>
+        </div>
+    </div>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -50,11 +60,10 @@ $this->title = 'Informacion Inmueble';
             'patio',
         ],
     ]) ?>
-    <div class="container-fluid">
-        <div class="col-xs-12 col-md-12">
-            <div id="map"></div>
-        </div>
-    </div>
+    
+     <?= Carousel::widget([
+        'items' => $images
+    ]);?>
     <?= HTML::activeHiddenInput($model, 'lon', ["id"=>"lon"]) ?>
     <?= HTML::activeHiddenInput($model, 'lat', ["id"=>"lat"]) ?>
     <script type="text/javascript">

@@ -129,9 +129,15 @@ class SiteController extends Controller
             $usrId = Yii::$app->user->identity->id;
             $fav = Favoritos::find()->where(["idInmueble" => $id, 'idUser'=>$usrId])->one();
         } 
+        $inm = Inmueble::find()->where(["id" =>$id])->one();
             return $this->render('detalle', [
                 'fav' => $fav,
-                'model' => Inmueble::find()->where(["id" =>$id])->one()
+                'model' => $inm,
+                'images' => [
+                    '<img width="100%" height="100%" src="/uploads/'.$inm->imagen1.'"/>',
+                    '<img width="100%" height="100%" src="/uploads/'.$inm->imagen2.'"/>',
+                    '<img width="100%" height="100%" src="/uploads/'.$inm->imagen3.'"/>'
+                ]
             ]);
         
     }
@@ -155,7 +161,6 @@ class SiteController extends Controller
        
             $query = Inmueble::find();
         }
-    
       
         $provider = new ActiveDataProvider([
             'query' => $query,
