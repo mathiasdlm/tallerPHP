@@ -45,6 +45,14 @@ use backend\models\TipoInmueble;
 
     <?= $form->field($model, 'patio')->radioList([0 => ' No ', 1 => ' Si']) ?>
 
+    <?= $form->field($model, 'enAlquiler')->radioList([0 => ' No ', 1 => ' Si']) ?>
+
+    <?= $form->field($model, 'enVenta')->radioList([0 => ' No ', 1 => ' Si']) ?>
+
+    <?= $form->field($model, 'precioAlquiler')->textInput() ?>
+
+    <?= $form->field($model, 'precioVenta')->textInput() ?>
+
     <?= $form->field($model, 'idTipo')->dropDownList(  
 
         ArrayHelper::map(TipoInmueble::find()->all(),'id','Nombre'),['prompt'=>'Seleccione un Tipo'])->label('Tipo de Inmueble'); ?>
