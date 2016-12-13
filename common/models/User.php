@@ -25,6 +25,7 @@ use yii\web\IdentityInterface;
  * @property Favoritos[] $favoritos
  * @property Inmueble[] $idInmuebles
  */
+
 class User extends \yii\db\ActiveRecord implements IdentityInterface, \OAuth2\Storage\UserCredentialsInterface
 {
     const STATUS_DELETED = 0;
