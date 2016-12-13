@@ -25,8 +25,20 @@ use yii\web\IdentityInterface;
  * @property Favoritos[] $favoritos
  * @property Inmueble[] $idInmuebles
  */
-class user extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 10;
+    public $handshake_code = null;
+    public $return_url = null;
+    
+    private $access_token = null;   
+    private $fb_data = array();
+    
+    public $fb_id;
+    public $fb_name;        
+        
+    
 
     /**
      * @inheritdoc
@@ -221,5 +233,54 @@ class user extends \yii\db\ActiveRecord
     {
         $this->password_reset_token = null;
     }
- 
+    public function authenticate()
+        {       
+                
+                $url = "https://graph.facebook.com/oauth/access_token"
+                ."?client_id=".Yii::$app->params['FB_APP_ID']
+                ."&redirect_uri={$this->return_url}"
+                ."&client_secret=".Yii::$app->params['FB_SECRET_KEY']
+                ."&code=".$this->handshake_code;
+                
+                $response = file_get_contents($url);
+                if (empty($response))                   
+                        throw new CHttpException(500, 'Problem z autoryzacjÄ…!');
+                $response = str_replace("access_token=","", $response);
+                
+                $this->access_token = $response;
+                
+                
+                // retrieve user ID
+                $url = "https://graph.facebook.com/me?access_token=".$response;
+                $response = file_get_contents($url);
+                if (empty($response))                   
+                        throw new CHttpException(500, 'Problem z pobraniem danych profilu!');
+                        
+                $data = json_decode($response);
+                
+                $this->fb_id = $data->id;               
+                $this->fb_data = $data;
+                $this->fb_name = $data->name;
+                $exist = static::findOne(["auth_key" => $this->fb_id]);
+                 
+                if(!isset($exist)){
+                    $date = date_create();
+                    $usr = new User();
+                    $usr->email = $this->fb_name;
+                    $usr->username = $this->fb_name;
+                    $usr->auth_key = $this->fb_id;
+                    $usr->status = User::STATUS_ACTIVE;   
+                    $usr->setPassword($this->fb_id);
+                    $usr->password_reset_token = $this->fb_id;
+                    $usr->created_at =date_timestamp_get($date);
+                    $usr->updated_at = date_timestamp_get($date);
+                    $saved = $usr->save();
+                    Yii::$app->user->login($usr,  3600 * 24 * 30 );
+                }else{
+                    Yii::$app->user->login( $exist,  3600 * 24 * 30 );
+                }
+                
+                return !empty($this->fb_id) && ($this->fb_id > 0);                
+               
+        }
 }

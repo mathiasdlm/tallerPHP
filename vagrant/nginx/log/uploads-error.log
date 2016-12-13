@@ -1,0 +1,6 @@
+2016/12/12 23:55:49 [error] 6601#0: *21 directory index of "/app/uploads/" is forbidden, client: 192.168.83.1, server: y2aa-uploads.dev, request: "GET / HTTP/1.1", host: "y2aa-uploads.dev", referrer: "http://localhost:8100/"
+2016/12/12 23:55:52 [error] 6601#0: *21 directory index of "/app/uploads/" is forbidden, client: 192.168.83.1, server: y2aa-uploads.dev, request: "GET / HTTP/1.1", host: "y2aa-uploads.dev", referrer: "http://localhost:8100/"
+2016/12/12 23:56:11 [error] 6601#0: *21 directory index of "/app/uploads/" is forbidden, client: 192.168.83.1, server: y2aa-uploads.dev, request: "GET / HTTP/1.1", host: "y2aa-uploads.dev", referrer: "http://localhost:8100/"
+2016/12/12 23:56:17 [error] 6601#0: *21 directory index of "/app/uploads/" is forbidden, client: 192.168.83.1, server: y2aa-uploads.dev, request: "GET / HTTP/1.1", host: "y2aa-uploads.dev", referrer: "http://localhost:8100/"
+2016/12/12 23:56:49 [error] 6601#0: *21 directory index of "/app/uploads/" is forbidden, client: 192.168.83.1, server: y2aa-uploads.dev, request: "GET / HTTP/1.1", host: "y2aa-uploads.dev", referrer: "http://localhost:8100/"
+2016/12/12 23:59:45 [error] 6601#0: *73 directory index of "/app/uploads/" is forbidden, client: 192.168.83.1, server: y2aa-uploads.dev, request: "GET / HTTP/1.1", host: "y2aa-uploads.dev", referrer: "http://localhost:8100/"

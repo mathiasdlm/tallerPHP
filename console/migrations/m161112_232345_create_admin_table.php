@@ -11,7 +11,7 @@ class m161112_232345_create_admin_table extends Migration
      */
     public function up()
     {
-        
+      
  $tables = Yii::$app->db->schema->getTableNames();
 $dbType = $this->db->driverName;
 $tableOptions_mysql = "CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB";
@@ -143,6 +143,10 @@ if ($dbType == "mysql") {
         'metrosEdificados' => 'INT(5) NOT NULL',
         'cochera' => 'TINYINT(1) NULL',
         'patio' => 'TINYINT(1) NULL',
+        'enAlquiler' => 'TINYINT(1) NOT NULL',
+        'enVenta' => 'TINYINT(1) NOT NULL',
+        'precioAlquiler' => 'FLOAT NULL',
+        'precioVenta' => 'FLOAT NULL',
         'idTipo' => 'INT(3) NOT NULL',
         'idCliente' => 'INT(5) NOT NULL',
         'imagen1' => 'VARCHAR(255) NULL',
@@ -184,49 +188,56 @@ if ($dbType == "mysql") {
 
  
  
-$this->createIndex('idx_UNIQUE_username_5268_00','admin','username',1);
-$this->createIndex('idx_UNIQUE_email_5268_01','admin','email',1);
-$this->createIndex('idx_UNIQUE_username_5268_02','admin','username',1);
-$this->createIndex('idx_UNIQUE_email_5268_03','admin','email',1);
-$this->createIndex('idx_UNIQUE_password_reset_token_5269_04','admin','password_reset_token',1);
-$this->createIndex('idx_UNIQUE_password_reset_token_5269_05','admin','password_reset_token',1);
-$this->createIndex('idx_rule_name_5457_06','auth_item','rule_name',0);
-$this->createIndex('idx_type_5457_07','auth_item','type',0);
-$this->createIndex('idx_child_5541_08','auth_item_child','child',0);
-$this->createIndex('idx_idUser_5787_09','favoritos','idUser',0);
-$this->createIndex('idx_idCliente_5872_10','horarioAtencion','idCliente',0);
-$this->createIndex('idx_idInmueble_5873_11','horarioAtencion','idInmueble',0);
-$this->createIndex('idx_idTipo_5981_12','inmueble','idTipo',0);
-$this->createIndex('idx_idCliente_5981_13','inmueble','idCliente',0);
-$this->createIndex('idx_UNIQUE_username_6153_14','user','username',1);
-$this->createIndex('idx_UNIQUE_email_6154_15','user','email',1);
-$this->createIndex('idx_UNIQUE_username_6154_16','user','username',1);
-$this->createIndex('idx_UNIQUE_email_6154_17','user','email',1);
-$this->createIndex('idx_UNIQUE_username_6154_18','user','username',1);
-$this->createIndex('idx_UNIQUE_email_6155_19','user','email',1);
-$this->createIndex('idx_UNIQUE_password_reset_token_6155_20','user','password_reset_token',1);
-$this->createIndex('idx_UNIQUE_password_reset_token_6155_21','user','password_reset_token',1);
-$this->createIndex('idx_UNIQUE_password_reset_token_6155_22','user','password_reset_token',1);
+$this->createIndex('idx_UNIQUE_username_0821_00','admin','username',1);
+$this->createIndex('idx_UNIQUE_email_0821_01','admin','email',1);
+$this->createIndex('idx_UNIQUE_username_0822_02','admin','username',1);
+$this->createIndex('idx_UNIQUE_email_0822_03','admin','email',1);
+$this->createIndex('idx_UNIQUE_password_reset_token_0822_04','admin','password_reset_token',1);
+$this->createIndex('idx_UNIQUE_password_reset_token_0822_05','admin','password_reset_token',1);
+$this->createIndex('idx_rule_name_1_06','auth_item','rule_name',0);
+$this->createIndex('idx_type_1_07','auth_item','type',0);
+$this->createIndex('idx_child_1098_08','auth_item_child','child',0);
+$this->createIndex('idx_idUser_1356_09','favoritos','idUser',0);
+$this->createIndex('idx_idCliente_1448_10','horarioAtencion','idCliente',0);
+$this->createIndex('idx_idInmueble_1449_11','horarioAtencion','idInmueble',0);
+$this->createIndex('idx_idTipo_1559_12','inmueble','idTipo',0);
+$this->createIndex('idx_idCliente_156_13','inmueble','idCliente',0);
+$this->createIndex('idx_UNIQUE_username_1721_14','user','username',1);
+$this->createIndex('idx_UNIQUE_email_1721_15','user','email',1);
+$this->createIndex('idx_UNIQUE_username_1721_16','user','username',1);
+$this->createIndex('idx_UNIQUE_email_1721_17','user','email',1);
+$this->createIndex('idx_UNIQUE_username_1722_18','user','username',1);
+$this->createIndex('idx_UNIQUE_email_1722_19','user','email',1);
+$this->createIndex('idx_UNIQUE_password_reset_token_1722_20','user','password_reset_token',1);
+$this->createIndex('idx_UNIQUE_password_reset_token_1722_21','user','password_reset_token',1);
+$this->createIndex('idx_UNIQUE_password_reset_token_1722_22','user','password_reset_token',1);
  
 $this->execute('SET foreign_key_checks = 0');
-$this->addForeignKey('fk_auth_item_5352_00','{{%auth_assignment}}', 'item_name', '{{%auth_item}}', 'name', 'CASCADE', 'NO ACTION' );
-$this->addForeignKey('fk_auth_rule_5442_01','{{%auth_item}}', 'rule_name', '{{%auth_rule}}', 'name', 'CASCADE', 'NO ACTION' );
-$this->addForeignKey('fk_auth_item_5526_02','{{%auth_item_child}}', 'parent', '{{%auth_item}}', 'name', 'CASCADE', 'NO ACTION' );
-$this->addForeignKey('fk_auth_item_5527_03','{{%auth_item_child}}', 'child', '{{%auth_item}}', 'name', 'CASCADE', 'NO ACTION' );
-$this->addForeignKey('fk_inmueble_5773_04','{{%favoritos}}', 'idInmueble', '{{%inmueble}}', 'id', 'CASCADE', 'NO ACTION' );
-$this->addForeignKey('fk_user_5773_05','{{%favoritos}}', 'idUser', '{{%user}}', 'id', 'CASCADE', 'NO ACTION' );
-$this->addForeignKey('fk_cliente_5858_06','{{%horarioAtencion}}', 'idCliente', '{{%cliente}}', 'id', 'CASCADE', 'NO ACTION' );
-$this->addForeignKey('fk_cliente_5959_07','{{%inmueble}}', 'idCliente', '{{%cliente}}', 'id', 'CASCADE', 'NO ACTION' );
-$this->addForeignKey('fk_tipoInmueble_596_08','{{%inmueble}}', 'idTipo', '{{%tipoInmueble}}', 'id', 'CASCADE', 'NO ACTION' );
+$this->addForeignKey('fk_auth_item_0892_00','{{%auth_assignment}}', 'item_name', '{{%auth_item}}', 'name', 'CASCADE', 'NO ACTION' );
+$this->addForeignKey('fk_auth_rule_0985_01','{{%auth_item}}', 'rule_name', '{{%auth_rule}}', 'name', 'CASCADE', 'NO ACTION' );
+$this->addForeignKey('fk_auth_item_1082_02','{{%auth_item_child}}', 'parent', '{{%auth_item}}', 'name', 'CASCADE', 'NO ACTION' );
+$this->addForeignKey('fk_auth_item_1083_03','{{%auth_item_child}}', 'child', '{{%auth_item}}', 'name', 'CASCADE', 'NO ACTION' );
+$this->addForeignKey('fk_inmueble_134_04','{{%favoritos}}', 'idInmueble', '{{%inmueble}}', 'id', 'CASCADE', 'NO ACTION' );
+$this->addForeignKey('fk_user_134_05','{{%favoritos}}', 'idUser', '{{%user}}', 'id', 'CASCADE', 'NO ACTION' );
+$this->addForeignKey('fk_cliente_1432_06','{{%horarioAtencion}}', 'idCliente', '{{%cliente}}', 'id', 'CASCADE', 'NO ACTION' );
+$this->addForeignKey('fk_cliente_1544_07','{{%inmueble}}', 'idCliente', '{{%cliente}}', 'id', 'CASCADE', 'NO ACTION' );
+$this->addForeignKey('fk_tipoInmueble_1544_08','{{%inmueble}}', 'idTipo', '{{%tipoInmueble}}', 'id', 'CASCADE', 'NO ACTION' );
 $this->execute('SET foreign_key_checks = 1;');
  
 $this->execute('SET foreign_key_checks = 0');
 $this->insert('{{%admin}}',['id'=>'1','username'=>'admin','auth_key'=>'F61vLeVz8vbW_9p4BFyueOVkt9u3iEz6','password_hash'=>'$2y$13$LadTuWj0m/cOgc0SDTiFse3up77MTAuO7dkIpVdUX2rJYauUoHn4i','password_reset_token'=>'','email'=>'mathiasdlm@gmail.com','status'=>'10','created_at'=>'1478990368','updated_at'=>'1478990368','rol'=>'10']);
 $this->insert('{{%admin}}',['id'=>'2','username'=>'gestion','auth_key'=>'F61vLeVz8vbW_9p4BFyueOVkt9u3iEz6','password_hash'=>'$2y$13$LadTuWj0m/cOgc0SDTiFse3up77MTAuO7dkIpVdUX2rJYauUoHn4i','password_reset_token'=>'','email'=>'gestion@gmail.com','status'=>'10','created_at'=>'1478990368','updated_at'=>'1478990368','rol'=>'20']);
+$this->insert('{{%admin}}',['id'=>'3','username'=>'lala','auth_key'=>'kTAku7-_LTQ6kxWbh5WysQiyt0VRMCbf','password_hash'=>'$2y$13$mJWxS/Ll6fDbfN8YKSRJteqxKcETtEP9DDjo4OqzNPigmRu.sqqKq','password_reset_token'=>'','email'=>'lala@lala.com','status'=>'10','created_at'=>'1481587828','updated_at'=>'1481587828','rol'=>'10']);
 $this->insert('{{%auth_assignment}}',['item_name'=>'admin-create','user_id'=>'1','created_at'=>'']);
 $this->insert('{{%auth_item}}',['name'=>'admin','type'=>'1','description'=>'create update and delete','rule_name'=>'','data'=>'','created_at'=>'','updated_at'=>'']);
 $this->insert('{{%auth_item}}',['name'=>'admin-create','type'=>'1','description'=>'create delete and update all','rule_name'=>'','data'=>'','created_at'=>'','updated_at'=>'']);
 $this->insert('{{%auth_item_child}}',['parent'=>'admin','child'=>'admin-create']);
+$this->insert('{{%cliente}}',['id'=>'1','nombre'=>'Mathias','prioridad'=>'2','telefono'=>'24101864','email'=>'mathi@mathi.com']);
+$this->insert('{{%horarioAtencion}}',['id'=>'1','horaDesde'=>'10:00:00','horaHasta'=>'24:00:00','idCliente'=>'1','idInmueble'=>'1']);
+$this->insert('{{%inmueble}}',['id'=>'1','nombre'=>'La casa de Mathi','lat'=>'-34.8958','lon'=>'-56.1551','cantDormitorios'=>'3','cantBanos'=>'2','metrosTotales'=>'234','metrosEdificados'=>'233','cochera'=>'0','patio'=>'1','enAlquiler'=>'0','enVenta'=>'0','precioAlquiler'=>'0','precioVenta'=>'0','idTipo'=>'1','idCliente'=>'1','imagen1'=>'','imagen2'=>'','imagen3'=>'']);
+$this->insert('{{%inmueble}}',['id'=>'2','nombre'=>'Plaza del entrevero','lat'=>'-34.9056','lon'=>'-56.1942','cantDormitorios'=>'2','cantBanos'=>'3','metrosTotales'=>'234','metrosEdificados'=>'422','cochera'=>'1','patio'=>'0','enAlquiler'=>'0','enVenta'=>'0','precioAlquiler'=>'0','precioVenta'=>'0','idTipo'=>'1','idCliente'=>'1','imagen1'=>'','imagen2'=>'','imagen3'=>'']);
+$this->insert('{{%inmueble}}',['id'=>'4','nombre'=>'La oficina','lat'=>'-34.9099','lon'=>'-56.1514','cantDormitorios'=>'4','cantBanos'=>'3','metrosTotales'=>'2344','metrosEdificados'=>'2344','cochera'=>'1','patio'=>'1','enAlquiler'=>'1','enVenta'=>'1','precioAlquiler'=>'23444','precioVenta'=>'23445','idTipo'=>'1','idCliente'=>'1','imagen1'=>'','imagen2'=>'','imagen3'=>'']);
+$this->insert('{{%tipoInmueble}}',['id'=>'1','Nombre'=>'Apartamento']);
 $this->execute('SET foreign_key_checks = 1;');
 
     }
@@ -237,6 +248,7 @@ $this->execute('SET foreign_key_checks = 1;');
     public function down()
     {
        
+ 
  
  $this->execute('SET foreign_key_checks = 0');
 $this->execute('DROP TABLE IF EXISTS `admin`');

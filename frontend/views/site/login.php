@@ -7,6 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+use   yii\helpers\Url;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -31,6 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+              
+                    <?= Html::a('<img width="30px" src="http://www.myiconfinder.com/uploads/iconsets/128-128-22e6ab97ed7351a8934bd466db9a7eaa.png"/>', Url::to('fblogin'), ['class' => 'btn btn-primary', 'name' => 'login-button' , 'style'=>'padding:0;width:30px;']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

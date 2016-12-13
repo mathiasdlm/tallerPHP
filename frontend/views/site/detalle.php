@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\Pjax;
 use yii\widgets\ActiveForm;
+use yii\bootstrap\Carousel;
 /* @var $this yii\web\View */
 /* @var $model app\models\Cliente */
 
@@ -15,6 +16,10 @@ $this->title = 'Informacion Inmueble';
   #map {
     height: 560px;
   }
+ 
+    .mapa-detalle{
+        margin-bottom: 50px;
+    }
 </style>
 <div class="inmueble-view">
 
@@ -23,18 +28,26 @@ $this->title = 'Informacion Inmueble';
       
         <?php Pjax::begin(['id'=>'pjax-job-gridview-rodro', 'enablePushState'=>false, 'enableReplaceState'=>false]) ?>
 
-            <?php $form = ActiveForm::begin(['action'=>'favorito', 'method'=>'post','options' => ['data-pjax' => true ]]); ?>
-                <?php if(!isset($fav)){ ?> 
+            <?php if(!isset($fav)){ ?> 
+                <?php $form = ActiveForm::begin(['action'=>'favorito', 'method'=>'post','options' => ['data-pjax' => true ]]); ?>
                     <?= $form->field($model, 'id')->hiddenInput()->label(false)  ?>
-                    <?= Html::submitButton('<i class="glyphicon glyphicon-star"></i>', ['class' => 'btn btn-default pull-right']) ?>
+                    <?= Html::submitButton('<i class="glyphicon glyphicon-star"></i>', ['class' => 'btn btn-default pull-right', 'style'=>'    margin: 10px;']) ?>
+                <?php ActiveForm::end(); ?>
  
                 <?php } else { ?>
-                    <i class="glyphicon glyphicon-star"></i>
-                <?php } ?>
-            <?php ActiveForm::end(); ?>
+                    <?php $form = ActiveForm::begin(['action'=>'dislike', 'method'=>'post','options' => ['data-pjax' => true ]]); ?>
+                        <?= $form->field($model, 'id')->hiddenInput()->label(false)  ?>
+            <?= Html::submitButton('<i class="glyphicon glyphicon-star"></i>', ['class' => 'btn btn-default pull-right', 'style'=>'    margin: 10px;background-color: #009922;']) ?>
+                    <?php ActiveForm::end(); ?>
+                <?php } ?> 
         <?php Pjax::end()?>
 
     <?php }?>
+    <div class="mapa-detalle container-fluid">
+        <div class="col-xs-12 col-md-12">
+            <div id="map"></div>
+        </div>
+    </div>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -47,11 +60,10 @@ $this->title = 'Informacion Inmueble';
             'patio',
         ],
     ]) ?>
-    <div class="container-fluid">
-        <div class="col-xs-12 col-md-12">
-            <div id="map"></div>
-        </div>
-    </div>
+    
+     <?= Carousel::widget([
+        'items' => $images
+    ]);?>
     <?= HTML::activeHiddenInput($model, 'lon', ["id"=>"lon"]) ?>
     <?= HTML::activeHiddenInput($model, 'lat', ["id"=>"lat"]) ?>
     <script type="text/javascript">

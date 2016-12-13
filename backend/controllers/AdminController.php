@@ -3,8 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Admin;
-use common\models\SignupForm;
+use backend\models\Admin;
+use backend\models\SignupForm;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
