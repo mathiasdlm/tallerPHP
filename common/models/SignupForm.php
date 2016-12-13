@@ -48,14 +48,20 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null; 
         }
-        
-        $user = new Admin();
+        $date = date_create();
+        $user = new User();
         $user->username = $this->username;
-        $user->email = $this->email;
-        $user->rol = $this->rol;
+        $user->email = $this->email; 
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        
+    
+        $user->status = User::STATUS_ACTIVE;    
+        $user->generatePasswordResetToken();
+        $user->created_at =date_timestamp_get($date);
+        $user->updated_at = date_timestamp_get($date);
+
+
         return $user->save() ? $user : null;
+        
     }
 }
