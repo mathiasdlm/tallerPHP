@@ -12,7 +12,7 @@ use yii\helpers\Url;
         <p> <span><?=HTML::activeLabel($model, 'cochera')?>:&nbsp;</span><?= $model->cochera?></p>
         <p> <span><?=HTML::activeLabel($model, 'patio')?>:&nbsp;</span><?= $model->patio?></p>
         <p>
-            <?= Html::a('Detalle', Url::to(['detalle', 'id' => $model->id]),['class'=>'btn btn-default btn-primary'])?>
+            <?= Html::a(Yii::t('app','Detail'), Url::to(['detalle', 'id' => $model->id]),['class'=>'btn btn-default btn-primary'])?>
             <a class="btn btn-default pull-right" href="#" role="button">
                 <i class="glyphicon glyphicon-star"></i>
             </a>

@@ -1,6 +1,6 @@
 <?php
 use backend\models\Inmueble;
-
+use yii\helpers\Url;
 $this->title = 'QuieroCasa.com.uy';
 ?>
 <style>
@@ -11,8 +11,8 @@ $this->title = 'QuieroCasa.com.uy';
 <div class="site-index">
     <div class="jumbotron">
       <div class="container">
-        <h1>Bienvenido a QuieroCasa.com.uy</h1>
-        <p>Un portal donde usted va a poder encontrar las propiedades que anda buscando</p>
+        <h1><?=Yii::t('app','Welcome to QuieroCasa')?></h1>
+        <p><?=Yii::t('app','Welcome description')?></p>
       </div>
     </div>
     <div class="container-fluid">
@@ -33,7 +33,9 @@ function initMap() {
     var contentString<?php echo $prop->id ?> = 
     '<div id="content">'+
       '<h4><?php echo $prop->nombre ?></h4>'+
-      '<p>Para ver el detalle haga <a href="/site/view?id=<?php echo $prop->id ?>">click aqui</a></p>'+
+      '<p><?=
+          Yii::t('app','see detail',[
+                      URL::to(['site/view',"id"=>$prop->id])])?></p>'+
     '</div>';
 
     var infowindow<?php echo $prop->id ?> = new google.maps.InfoWindow({
