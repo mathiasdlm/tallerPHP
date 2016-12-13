@@ -23,15 +23,18 @@ $this->title = 'Informacion Inmueble';
       
         <?php Pjax::begin(['id'=>'pjax-job-gridview-rodro', 'enablePushState'=>false, 'enableReplaceState'=>false]) ?>
 
-            <?php $form = ActiveForm::begin(['action'=>'favorito', 'method'=>'post','options' => ['data-pjax' => true ]]); ?>
-                <?php if(!isset($fav)){ ?> 
+            <?php if(!isset($fav)){ ?> 
+                <?php $form = ActiveForm::begin(['action'=>'favorito', 'method'=>'post','options' => ['data-pjax' => true ]]); ?>
                     <?= $form->field($model, 'id')->hiddenInput()->label(false)  ?>
-                    <?= Html::submitButton('<i class="glyphicon glyphicon-star"></i>', ['class' => 'btn btn-default pull-right']) ?>
+                    <?= Html::submitButton('<i class="glyphicon glyphicon-star"></i>', ['class' => 'btn btn-default pull-right', 'style'=>'    margin: 10px;']) ?>
+                <?php ActiveForm::end(); ?>
  
                 <?php } else { ?>
-                    <i class="glyphicon glyphicon-star"></i>
-                <?php } ?>
-            <?php ActiveForm::end(); ?>
+                    <?php $form = ActiveForm::begin(['action'=>'dislike', 'method'=>'post','options' => ['data-pjax' => true ]]); ?>
+                        <?= $form->field($model, 'id')->hiddenInput()->label(false)  ?>
+            <?= Html::submitButton('<i class="glyphicon glyphicon-star"></i>', ['class' => 'btn btn-default pull-right', 'style'=>'    margin: 10px;background-color: #009922;']) ?>
+                    <?php ActiveForm::end(); ?>
+                <?php } ?> 
         <?php Pjax::end()?>
 
     <?php }?>
