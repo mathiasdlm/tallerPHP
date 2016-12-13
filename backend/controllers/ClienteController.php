@@ -11,6 +11,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * ClienteController implements the CRUD actions for Cliente model.
@@ -67,7 +68,8 @@ class ClienteController extends BaseController
      */
     public function actionCreate()
     {
-        $model = new Cliente();
+        if(Yii::$app->user->can('admin-create')){
+                $model = new Cliente();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,6 +77,9 @@ class ClienteController extends BaseController
             return $this->render('create', [
                 'model' => $model,
             ]);
+        }
+        }else{
+                  throw new ForbiddenHttpException;
         }
     }
 
@@ -86,6 +91,8 @@ class ClienteController extends BaseController
      */
     public function actionUpdate($id)
     {
+        if(Yii::$app->user->can('admin-create')){
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -95,6 +102,12 @@ class ClienteController extends BaseController
                 'model' => $model,
             ]);
         }
+    }
+        else{
+                              throw new ForbiddenHttpException;
+
+        }
+    
     }
 
     /**

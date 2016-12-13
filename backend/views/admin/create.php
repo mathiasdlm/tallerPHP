@@ -32,7 +32,8 @@ $this->title = 'Alta Administrador';
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
-                <?= $form->field($model, 'rol')->textInput() ?>
+                <?= $form->field($model, 'rol')->dropDownList(['10' => 'Administrador', '20' => 'Gestion'],
+                    ['prompt'=>'Seleccione un Rol']);?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

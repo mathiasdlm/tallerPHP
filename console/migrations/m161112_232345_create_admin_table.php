@@ -1,4 +1,4 @@
-<?php
+e<?php
 use yii\db\Migration;
 
 /**
@@ -184,6 +184,8 @@ if ($dbType == "mysql") {
     ], $tableOptions_mysql);
 }
 }
+
+
  
  
 $this->createIndex('idx_UNIQUE_username_0821_00','admin','username',1);
