@@ -204,7 +204,6 @@ class SiteController extends Controller
             }
             $attr = [];
             $attr["id"] = $ids;
-            var_dump($usrId);
             $inm = new Inmueble();
             if(Yii::$app->request->get('Inmueble')){
                 $inm->load(Yii::$app->request->get());
@@ -244,6 +243,23 @@ class SiteController extends Controller
         }else{
             return $this->actionLogin();            
         }
+    }
+    public function actionDislike(){
+        if(!Yii::$app->user->isGuest && Yii::$app->request->isPost){
+
+            $id = Yii::$app->request->post('Inmueble')['id'];
+            $usrId = Yii::$app->user->identity->id;
+
+            $fav = Favoritos::find()->where(["idInmueble" => $id, "idUser" => $usrId])->one();
+    
+            $fav->delete();
+ 
+            return $this->render('detalle', [
+                    'fav' => null,
+                    'model' => Inmueble::find()->where(["id" =>$id])->one()]);
+            }
+            
+        
     }
     public function actionFavorito()
     {   
