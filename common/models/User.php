@@ -25,7 +25,7 @@ use yii\web\IdentityInterface;
  * @property Favoritos[] $favoritos
  * @property Inmueble[] $idInmuebles
  */
-class User extends \yii\db\ActiveRecord implements IdentityInterface
+class User extends \yii\db\ActiveRecord implements IdentityInterface, \OAuth2\Storage\UserCredentialsInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
@@ -116,7 +116,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        /** @var \filsh\yii2\oauth2server\Module $module */
+        $module = Yii::$app->getModule('oauth2');
+        $token = $module->getServer()->getResourceController()->getToken();
+
+        return !empty($token['user_id'])
+                    ? static::findIdentity($token['user_id'])
+                    : null;
     }
 
     /**
@@ -233,6 +239,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
     public function authenticate()
         {       
                 
@@ -283,4 +290,20 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                 return !empty($this->fb_id) && ($this->fb_id > 0);                
                
         }
+    
+    public function checkUserCredentials($username, $password)
+    {
+        $user = static::findByEmail($username);
+        if (empty($user)) {
+            return false;
+        }
+        return $user->validatePassword($password);
+    }
+
+    public function getUserDetails($username)
+    {
+        $user = static::findByEmail($username);
+        return ['user_id' => $user->getId()];
+    }
+ 
 }

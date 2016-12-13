@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "c006/yii2-migration-utility": "dev-master",
         "almasaeed2010/adminlte": "~2.0",
-        "dmstr/yii2-adminlte-asset": "2.*"
+        "dmstr/yii2-adminlte-asset": "2.*",
+	"filsh/yii2-oauth2-server": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
