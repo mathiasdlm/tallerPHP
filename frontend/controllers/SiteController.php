@@ -129,10 +129,13 @@ class SiteController extends Controller
             $usrId = Yii::$app->user->identity->id;
             $fav = Favoritos::find()->where(["idInmueble" => $id, 'idUser'=>$usrId])->one();
         } 
+
         $inm = Inmueble::find()->where(["id" =>$id])->one();
+        $cliente = $inm->getCliente()->one();   
             return $this->render('detalle', [
                 'fav' => $fav,
-                'model' => $inm,
+                'inm' => $inm,
+                'cliente'=> $cliente,
                 'images' => [
                     '<img width="100%" height="100%" src="/uploads/'.$inm->imagen1.'"/>',
                     '<img width="100%" height="100%" src="/uploads/'.$inm->imagen2.'"/>',
@@ -258,7 +261,7 @@ class SiteController extends Controller
  
             return $this->render('detalle', [
                     'fav' => null,
-                    'model' => Inmueble::find()->where(["id" =>$id])->one()]);
+                    'inm' => Inmueble::find()->where(["id" =>$id])->one()]);
             }
             
         
@@ -281,12 +284,12 @@ class SiteController extends Controller
                   Yii::$app->session->setFlash('success', 'Inmueble guardado como favorito');
                   return $this->render('detalle', [
                     'fav' => $fav,
-                    'model' => Inmueble::find()->where(["id" =>$id])->one()]);
+                    'inm' => Inmueble::find()->where(["id" =>$id])->one()]);
                 }
             }else{
                 return $this->render('detalle', [
                     'fav' => $fav,
-                    'model' => Inmueble::find()->where(["id" =>$id])->one()]);
+                    'inm' => Inmueble::find()->where(["id" =>$id])->one()]);
             }
 
             
