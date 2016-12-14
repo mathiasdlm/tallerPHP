@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * HorarioAtencionController implements the CRUD actions for HorarioAtencion model.
@@ -72,6 +73,7 @@ class HorarioAtencionController extends BaseController
                 'model' => $model,
             ]);
         }
+  
     }
 
     /**

@@ -21,6 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="login-form">
             <div class="sign-in-htm">
 
+    <p><?=Yii::t('app','signup instructions')?></p>
+
+
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
@@ -29,8 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton('REGISTRARSE', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                <div class="form-group" style="float:right;">
+
+                    <?= Html::submitButton(Yii::t('app','Signup'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+
                 </div>
 
             <?php ActiveForm::end(); ?>

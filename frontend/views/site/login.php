@@ -12,6 +12,7 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<p> <?=Yii::t('app','login instructions')?></p>
 
 
 <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'>
@@ -39,11 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
                 <div style="color:#999;margin:1em 0">
-                    Si te la olvidaste recuperalo <?= Html::a('por acá', ['site/request-password-reset']) ?>.
+                   <?=Yii::t('app','forgotpss')?><?= Html::a('reset it', ['site/request-password-reset']) ?>.
                 </div>
 
                 <div class="form-group" style="float:right;">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'Loguarme']) ?>
+                    <?= Html::submitButton(Yii::t('app','Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

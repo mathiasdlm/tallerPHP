@@ -10,7 +10,8 @@ $params = array_merge(
         //4e83247207898958ba0f109feef6e315
         // url of user-controller / handshake action. including your domain etc. full valid url.
         'FB_HANDSHAKE_URL' => "http://localhost:8089/frontend/web/site/fbhandshake"
-    ]
+    ],
+    ['langs'=>["en", "es"]]
 );
 
 return [
@@ -18,18 +19,24 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'on beforeAction' =>function($event){ 
-        $ctrlName = Yii::$app->controller->id;//$event->action->controller->id;
-        $action = Yii::$app->controller->action->id;//$event->action->controller->module->requestedRoute;
-        $act = $event->action->controller->module->requestedAction;
-        //var_dump(Yii::$app->request->acceptableLanguages);
-        Yii::$app->language = Yii::$app->request->getPreferredLanguage(["es-ES", "en-Us", "pr-Br"]);
-        if (Yii::$app->user->isGuest && $ctrlName != 'site' && $action != 'login') {     
-            $event->action->controller->redirect("site/login");       
-            
-        }
-    },
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'yii' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'sourceLanguage' => 'en-US',
+                    'basePath' => '@app/messages'
+                ],
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
+        ],
         'request' => [
             'cookieValidationKey' => 'FsDjiRPZDvObaEbFrUcl',
             'csrfParam' => '_csrf-frontend',
@@ -62,4 +69,15 @@ return [
         ] 
     ],
     'params' => $params,
+    'on beforeAction' =>function($event){ 
+        $ctrlName = Yii::$app->controller->id;//$event->action->controller->id;
+        $action = Yii::$app->controller->action->id;//$event->action->controller->module->requestedRoute;
+        $act = $event->action->controller->module->requestedAction;
+        //var_dump(Yii::$app->request->acceptableLanguages);
+        Yii::$app->language = Yii::$app->request->getPreferredLanguage(Yii::$app->params['langs']);
+        if (Yii::$app->user->isGuest && $ctrlName != 'site' && $action != 'login') {     
+            $event->action->controller->redirect("site/login");       
+            
+        }
+    }
 ];

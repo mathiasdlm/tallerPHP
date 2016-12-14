@@ -55,8 +55,7 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
             [['email'], 'unique'],
             [['username'], 'unique'],
             [['email'], 'unique'],
-            [['password_reset_token'], 'unique'],
-            [['password_reset_token'], 'unique'],
+            [['password_reset_token'], 'unique']
         ];
     }
 

@@ -70,30 +70,21 @@ class AdminController extends BaseController
     public function actionCreate()
     {
 
-        if(Yii::$app->user->can('admin-create')){
+        if(Yii::$app->user->identity->rol === 10){
 
-              $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->redirect('admin');
+            $model = new SignupForm();
+            
+            if ($model->load(Yii::$app->request->post())) {
+                if ($user = $model->signup()) {
+                    if (Yii::$app->getUser()->login($user)) {
+                        return $this->redirect('admin');
+                    }
                 }
             }
-        }
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-
-
+                return $this->render('create', ['model' => $model,]);
         }else{
-
-            throw new ForbiddenHttpException;
-            
-
+                throw new ForbiddenHttpException;
         }
-
-      
-        
     }
 
     /**
@@ -104,14 +95,18 @@ class AdminController extends BaseController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->identity->rol === 10){
+
+            $model = $this->findModel($id);
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+                return $this->render('update', ['model' => $model,]);
+            }
+        }else{
+                throw new ForbiddenHttpException;
         }
     }
 
@@ -123,9 +118,14 @@ class AdminController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->user->identity->rol === 10){
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+            
+        }else{
+            throw new ForbiddenHttpException;
+        }
     }
 
     /**

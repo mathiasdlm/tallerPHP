@@ -1,4 +1,4 @@
-<?php
+e<?php
 use yii\db\Migration;
 
 /**
@@ -184,6 +184,8 @@ if ($dbType == "mysql") {
     ], $tableOptions_mysql);
 }
 }
+
+
  
  
 $this->createIndex('idx_UNIQUE_username_0821_00','admin','username',1);
@@ -223,9 +225,9 @@ $this->addForeignKey('fk_tipoInmueble_1544_08','{{%inmueble}}', 'idTipo', '{{%ti
 $this->execute('SET foreign_key_checks = 1;');
  
 $this->execute('SET foreign_key_checks = 0');
-$this->insert('{{%admin}}',['id'=>'1','username'=>'admin','auth_key'=>'F61vLeVz8vbW_9p4BFyueOVkt9u3iEz6','password_hash'=>'$2y$13$LadTuWj0m/cOgc0SDTiFse3up77MTAuO7dkIpVdUX2rJYauUoHn4i','password_reset_token'=>'','email'=>'mathiasdlm@gmail.com','status'=>'10','created_at'=>'1478990368','updated_at'=>'1478990368','rol'=>'10']);
-$this->insert('{{%admin}}',['id'=>'2','username'=>'gestion','auth_key'=>'F61vLeVz8vbW_9p4BFyueOVkt9u3iEz6','password_hash'=>'$2y$13$LadTuWj0m/cOgc0SDTiFse3up77MTAuO7dkIpVdUX2rJYauUoHn4i','password_reset_token'=>'','email'=>'gestion@gmail.com','status'=>'10','created_at'=>'1478990368','updated_at'=>'1478990368','rol'=>'20']);
-$this->insert('{{%admin}}',['id'=>'3','username'=>'lala','auth_key'=>'kTAku7-_LTQ6kxWbh5WysQiyt0VRMCbf','password_hash'=>'$2y$13$mJWxS/Ll6fDbfN8YKSRJteqxKcETtEP9DDjo4OqzNPigmRu.sqqKq','password_reset_token'=>'','email'=>'lala@lala.com','status'=>'10','created_at'=>'1481587828','updated_at'=>'1481587828','rol'=>'10']);
+$this->insert('{{%admin}}',['id'=>'1','username'=>'admin','auth_key'=>'F61vLeVz8vbW_9p4BFyueOVkt9u3iEz6','password_hash'=>'$2y$13$LadTuWj0m/cOgc0SDTiFse3up77MTAuO7dkIpVdUX2rJYauUoHn4i','email'=>'mathiasdlm@gmail.com','status'=>'10','created_at'=>'1478990368','updated_at'=>'1478990368','rol'=>'10']);
+$this->insert('{{%admin}}',['id'=>'2','username'=>'gestion','auth_key'=>'F61vLeVz8vbW_9p4BFyueOVkt9u3iEz6','password_hash'=>'$2y$13$LadTuWj0m/cOgc0SDTiFse3up77MTAuO7dkIpVdUX2rJYauUoHn4i','email'=>'gestion@gmail.com','status'=>'10','created_at'=>'1478990368','updated_at'=>'1478990368','rol'=>'20']);
+$this->insert('{{%admin}}',['id'=>'3','username'=>'lala','auth_key'=>'kTAku7-_LTQ6kxWbh5WysQiyt0VRMCbf','password_hash'=>'$2y$13$mJWxS/Ll6fDbfN8YKSRJteqxKcETtEP9DDjo4OqzNPigmRu.sqqKq','email'=>'lala@lala.com','status'=>'10','created_at'=>'1481587828','updated_at'=>'1481587828','rol'=>'10']);
 $this->insert('{{%auth_assignment}}',['item_name'=>'admin-create','user_id'=>'1','created_at'=>'']);
 $this->insert('{{%auth_item}}',['name'=>'admin','type'=>'1','description'=>'create update and delete','rule_name'=>'','data'=>'','created_at'=>'','updated_at'=>'']);
 $this->insert('{{%auth_item}}',['name'=>'admin-create','type'=>'1','description'=>'create delete and update all','rule_name'=>'','data'=>'','created_at'=>'','updated_at'=>'']);

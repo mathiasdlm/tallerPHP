@@ -11,7 +11,9 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+
+    ],/*
     'on beforeRequest' =>function($event){ 
      //  var_dump(Yii::$app->request->headers);
     }, 
@@ -27,7 +29,7 @@ return [
         if (Yii::$app->user->isGuest && $ctrlName != 'site' && $action != 'login') {     
             $event->action->controller->redirect("site/login");       
         }
-    },
+    },*/
     'components' => [
         'request' => [
             'cookieValidationKey' => 'ROMwfZsgvVJzNxogpAbK',

@@ -11,6 +11,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * ClienteController implements the CRUD actions for Cliente model.
@@ -67,7 +68,8 @@ class ClienteController extends BaseController
      */
     public function actionCreate()
     {
-        $model = new Cliente();
+        if(Yii::$app->user->identity->rol === 10 || Yii::$app->user->identity->rol === 20){
+                $model = new Cliente();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,6 +77,9 @@ class ClienteController extends BaseController
             return $this->render('create', [
                 'model' => $model,
             ]);
+        }
+        }else{
+                  throw new ForbiddenHttpException;
         }
     }
 
@@ -86,15 +91,21 @@ class ClienteController extends BaseController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if(Yii::$app->user->identity->rol === 10 || Yii::$app->user->identity->rol === 20){
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            $model = $this->findModel($id);
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                    return $this->render('update', [
+                        'model' => $model,
+                    ]);
+            }
+        }else{
+              throw new ForbiddenHttpException;
         }
+    
     }
 
     /**
@@ -105,9 +116,14 @@ class ClienteController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->user->identity->rol === 10){
 
-        return $this->redirect(['index']);
+            $this->findModel($id)->delete();
+
+            return $this->redirect(['index']);
+        }else{
+                throw new ForbiddenHttpException;
+        }
     }
 
     /**
