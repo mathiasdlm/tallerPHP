@@ -29,7 +29,7 @@ $this->title = 'Usuarios';
             //'password_reset_token',
             'email:email',
              'status'=>[
-            'attribute' => 'Activo',
+            'attribute' => 'Estado',
             'value'=> function ($model) {
                 if($model->status === 20){
                     return 'Activo';

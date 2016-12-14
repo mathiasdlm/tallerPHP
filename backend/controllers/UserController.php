@@ -126,25 +126,14 @@ class UserController extends BaseController
                 return $this->redirect(['index']);
 
            }else{
-                            return $this->redirect(['index']);
+           
+            return $this->redirect(['index']);
+             throw new NotFoundHttpException('Error al Activar Usuario');
 
            }
-
-        
-
-           /* if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['index']);
-            }else{
-                    return $this->redirect(['index']);
-            }
-
-           /* if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view','id' => $model->id]);
-            }else{
-                               throw new ForbiddenHttpException;
-
-            }*/
     }
+    
+
 
     /**
      * Finds the User model based on its primary key value.
@@ -161,4 +150,5 @@ class UserController extends BaseController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }
