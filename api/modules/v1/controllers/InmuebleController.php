@@ -8,6 +8,7 @@ use common\models\Inmueble;
 
 class InmuebleController extends ActiveController
 {
+    use \api\traits\ControllersCommonTrait;
     public $modelClass = 'common\models\Inmueble';
 
     public function actionSearch($id, $nombre, $cantDormitorios, $cantBanos, $metrosTotales, $metrosEdificados, $cochera, $patio){
@@ -30,6 +31,26 @@ class InmuebleController extends ActiveController
     		$query['patio'] = $patio;
 	    return Inmueble::find()->where($query)->all();
 	}
+
+    public function accessRules()
+    {
+        return [
+            [
+                'allow' => true,
+                'roles' => ['@'],
+            ],
+            [
+                'allow' => true,
+                'actions' => [
+                    'view',
+                    'create',
+                    'update',
+                    'delete'
+                ],
+                'roles' => ['@'],
+            ],
+        ];
+    }
 }
 
 ?>

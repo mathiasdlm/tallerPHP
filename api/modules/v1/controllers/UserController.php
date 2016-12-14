@@ -8,6 +8,7 @@ use Yii;
 
 class UserController extends ActiveController
 {
+	use \api\traits\ControllersCommonTrait;
     public $modelClass = 'common\models\User';
 
     public function actionListarfavorito($id){
@@ -32,6 +33,25 @@ class UserController extends ActiveController
 			throw new \yii\web\HttpException(500, 'No existe favorito con los datos ingresados');
 		}
 	}
+	public function accessRules()
+    {
+        return [
+            [
+                'allow' => true,
+                'roles' => ['@'],
+            ],
+            [
+                'allow' => true,
+                'actions' => [
+                    'view',
+                    'create',
+                    'update',
+                    'delete'
+                ],
+                'roles' => ['@'],
+            ],
+        ];
+    }
 }
 
 ?>

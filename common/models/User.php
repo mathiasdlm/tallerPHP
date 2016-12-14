@@ -25,7 +25,6 @@ use yii\web\IdentityInterface;
  * @property Favoritos[] $favoritos
  * @property Inmueble[] $idInmuebles
  */
-
 class User extends \yii\db\ActiveRecord implements IdentityInterface, \OAuth2\Storage\UserCredentialsInterface
 {
     const STATUS_DELETED = 0;
@@ -305,6 +304,17 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface, \OAuth2\St
     {
         $user = static::findByEmail($username);
         return ['user_id' => $user->getId()];
+    }
+
+    /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email]);
     }
  
 }

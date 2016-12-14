@@ -43,7 +43,7 @@ return [
     ],
     'components' => [        
         'user' => [
-            'identityClass' => 'common\models\Cliente',
+            'identityClass' => 'common\models\User',
             'loginUrl' => null,
             'enableSession' => false,
         ],
