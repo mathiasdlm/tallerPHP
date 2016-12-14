@@ -86,9 +86,9 @@ return [
                  'controller' => 'v1/user', 
                  'pluralize'     => false,
                  'extraPatterns' => [
-                    'GET {id}/favorito' => 'listarfavorito',
-                    'POST {id}/favorito' => 'altafavorito',
-                    'DELETE {id}/favorito' => 'borrarfavorito'
+                    'GET favorito' => 'listarfavorito',
+                    'POST favorito' => 'altafavorito',
+                    'DELETE favorito' => 'borrarfavorito'
                  ] 
                 ],
                 ['class' => 'yii\rest\UrlRule', 
