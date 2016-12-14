@@ -28,7 +28,9 @@ use yii\web\IdentityInterface;
 class User extends \yii\db\ActiveRecord implements IdentityInterface, \OAuth2\Storage\UserCredentialsInterface
 {
     const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
+    const STATUS_INACTIVE = 10;
+    const STATUS_ACTIVE = 20;
+    
     public $handshake_code = null;
     public $return_url = null;
     

@@ -55,7 +55,7 @@ class SignupForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
     
-        $user->status = User::STATUS_ACTIVE;    
+        $user->status = User::STATUS_INACTIVE;    
         $user->generatePasswordResetToken();
         $user->created_at =date_timestamp_get($date);
         $user->updated_at = date_timestamp_get($date);
