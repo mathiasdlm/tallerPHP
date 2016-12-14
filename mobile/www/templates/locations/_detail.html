@@ -4,9 +4,9 @@
     <ion-nav-back-button class="button back-button buttons button-light__ button-clear header-item">Volver</ion-nav-back-button>
 
     <ion-nav-buttons side="secondary">
-      <button class="button button-clear icon-right button-icon icon ion-ios-star-outline button-energized" ng-click="addFavorito()"></button>
+      <button ng-if="!fav" class="button button-clear icon-right button-icon icon ion-ios-star-outline button-energized" ng-click="addFavorito()"></button>
 
-      <button class="button button-clear icon-right button-icon icon ion-ios-star button-energized" ng-click="removeFavorito()"></button>
+
     </ion-nav-buttons>
   </ion-nav-bar>
 
@@ -18,7 +18,7 @@
         <h5> Dueño {{inmueble.cliente.nombre}}</h5>
       </hgroup>
 
-      <!-- <button class="button-download-report button button-clear icon-right button-icon icon ion-ios-cloud-download-outline" ng-click="downloadReport()"></button> -->
+      <button ng-if="fav" class="button-download-report button button-clear icon-right button-icon icon ion-ios-star button-energized" ng-click="removeFavorito()"></button>
 
       <div class="header-slideshow-shadow"></div>
       <div class="header-slideshow-image" ng-if="inmueble.imagen" ng-style="{'background-image' : 'url({{inmueble.imagen}})'}"></div>

@@ -1,4 +1,4 @@
-angular.module('app.map')
+angular.module('app')
 
   .directive('map', function() {
     return {

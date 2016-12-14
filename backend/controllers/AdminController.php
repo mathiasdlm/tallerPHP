@@ -19,6 +19,7 @@ use yii\web\ForbiddenHttpException;
  */
 class AdminController extends BaseController
 {
+
     /**x
      * @inheritdoc
      */

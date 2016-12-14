@@ -23,6 +23,11 @@ class Favoritos extends \yii\db\ActiveRecord
         return 'favoritos';
     }
 
+    public function fields()
+    {
+        return ['user', 'inmueble'];
+    }
+
     /**
      * @inheritdoc
      */
@@ -50,7 +55,7 @@ class Favoritos extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdUser0()
+    public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'idUser']);
     }
@@ -58,7 +63,7 @@ class Favoritos extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdInmueble0()
+    public function getInmueble()
     {
         return $this->hasOne(Inmueble::className(), ['id' => 'idInmueble']);
     }

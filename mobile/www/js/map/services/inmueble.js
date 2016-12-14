@@ -5,13 +5,20 @@
  * _Please update the description and dependencies._
  *
  * */
-angular.module('app.map')
+angular.module('app')
 
   .service('InmuebleService', function ($q, $http, CONFIG) {
     var getAll = function(){
         var defer = $q.defer();
 
-        $http.get(CONFIG.URL + 'v1/inmueble')
+        $http({
+            method: 'GET',
+            url: CONFIG.URL + 'v1/inmueble',
+            headers: {
+              'Content-Type'  : 'application/json',
+              'Authorization' : CONFIG.IDENTITY.token_type + ' ' + CONFIG.IDENTITY.access_token
+            }
+        })
         .success(function (datos) {
             defer.resolve(datos);
         })
@@ -25,7 +32,14 @@ angular.module('app.map')
     var getById = function(id){
         var defer = $q.defer();
 
-        $http.get(CONFIG.URL + 'v1/inmueble/' + id)
+        $http({
+            method: 'GET',
+            url: CONFIG.URL + 'v1/inmueble/' + id,
+            headers: {
+              'Content-Type'  : 'application/json',
+              'Authorization' : CONFIG.IDENTITY.token_type + ' ' + CONFIG.IDENTITY.access_token
+            }
+        })
         .success(function (datos) {
             defer.resolve(datos);
         })

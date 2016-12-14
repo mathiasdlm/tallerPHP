@@ -5,14 +5,21 @@
  * _Please update the description and dependencies._
  *
  * */
-angular.module('app.map')
+angular.module('app')
 
   .service('FavoritoService', function ($q, $http, CONFIG) {
 
-    var getAll = function(usuarioId){
+    var getAll = function(){
         var defer = $q.defer();
 
-        $http.get(CONFIG.URL + 'v1/user/' + usuarioId + '/favoritos')
+        $http({
+            method: 'GET',
+            url: CONFIG.URL + 'v1/user/favorito',
+            headers: {
+              'Content-Type'  : 'application/json',
+              'Authorization' : CONFIG.IDENTITY.token_type + ' ' + CONFIG.IDENTITY.access_token
+            }
+        })
         .success(function (datos) {
             defer.resolve(datos);
         })
@@ -23,10 +30,18 @@ angular.module('app.map')
         return defer.promise;
     };
 
-    var add = function(usuarioId, favorito){
+    var add = function(favorito){
         var defer = $q.defer();
 
-        $http.post(CONFIG.URL + 'v1/user/' + usuarioId + '/favoritos', favorito)
+        $http({
+            method: 'POST',
+            url: CONFIG.URL + 'v1/user/favorito',
+            data: favorito,
+            headers: {
+              'Content-Type'  : 'application/json',
+              'Authorization' : CONFIG.IDENTITY.token_type + ' ' + CONFIG.IDENTITY.access_token
+            }
+        })
         .success(function (datos) {
             defer.resolve(datos);
         })
@@ -37,10 +52,16 @@ angular.module('app.map')
         return defer.promise;
     };
 
-    var remove = function(usuarioId, favoritoId){
+    var remove = function(idInmueble){
         var defer = $q.defer();
 
-        $http.delete(CONFIG.URL + 'v1/user/' + usuarioId + '/favoritos', favoritoId)
+        $http({
+            method: 'DELETE',
+            url: CONFIG.URL + 'v1/user/favorito/' + idInmueble,
+            headers: {
+              'Authorization' : CONFIG.IDENTITY.token_type + ' ' + CONFIG.IDENTITY.access_token
+            }
+        })
         .success(function (datos) {
             defer.resolve(datos);
         })
