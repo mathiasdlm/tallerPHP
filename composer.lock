@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8505977c9f98533ba71a71750a952473",
-    "content-hash": "8835c80d71d9b1a7b05531dc051e4ecf",
+    "hash": "61ce303dd116e5dda493623c5fe56e58",
+    "content-hash": "16b5d2bce0bf4590ade216760aeb94d4",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -530,16 +530,16 @@
         },
         {
             "name": "filsh/yii2-oauth2-server",
-            "version": "v1.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Filsh/yii2-oauth2-server.git",
-                "reference": "46706804e5dbf6eae20bc7e26cd1d115fe769c93"
+                "reference": "6008b7502e2d457784206d64baeedba1b76e11af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Filsh/yii2-oauth2-server/zipball/46706804e5dbf6eae20bc7e26cd1d115fe769c93",
-                "reference": "46706804e5dbf6eae20bc7e26cd1d115fe769c93",
+                "url": "https://api.github.com/repos/Filsh/yii2-oauth2-server/zipball/6008b7502e2d457784206d64baeedba1b76e11af",
+                "reference": "6008b7502e2d457784206d64baeedba1b76e11af",
                 "shasum": ""
             },
             "require": {
@@ -547,6 +547,12 @@
                 "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "filsh\\yii2\\oauth2server\\Bootstrap",
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "filsh\\yii2\\oauth2server\\": ""
@@ -566,10 +572,12 @@
             "homepage": "https://github.com/filsh/yii2-oauth2-server",
             "keywords": [
                 "extension",
-                "widget",
+                "module",
+                "oauth",
+                "oauth2",
                 "yii"
             ],
-            "time": "2015-04-10 10:55:36"
+            "time": "2015-06-16 22:36:28"
         },
         {
             "name": "fortawesome/font-awesome",
