@@ -24,14 +24,15 @@ class UserController extends ActiveController
 	    	$model = new Favoritos;
 	       	$model->idUser  =  Yii::$app->user->id;
 	       	$model->idInmueble  =  Yii::$app->request->post('idInmueble');
-	       	return $model->save(false);
+	       	$model->save(false);
+	       	return Favoritos::findOne(['idInmueble' => Yii::$app->request->post('idInmueble'), 'idUser' => Yii::$app->user->id]);
         }catch(\Exception $e){
         	throw new \yii\web\HttpException(500, 'Usuario o Inmueble inexistentes');
         }
 	}
-	public function actionBorrarfavorito(){
-		if (Favoritos::findOne(['idInmueble' => Yii::$app->request->post('idInmueble'), 'idUser' => Yii::$app->user->id]) !== null){
-    		Favoritos::findOne(['idInmueble' => Yii::$app->request->post('idInmueble'), 'idUser' => Yii::$app->user->id])->delete();
+	public function actionBorrarfavorito($id){
+		if (Favoritos::findOne(['idInmueble' => $id, 'idUser' => Yii::$app->user->id]) !== null){
+    		Favoritos::findOne(['idInmueble' => $id, 'idUser' => Yii::$app->user->id])->delete();
 		}else{
 			throw new \yii\web\HttpException(500, 'No existe favorito con los datos ingresados');
 		}

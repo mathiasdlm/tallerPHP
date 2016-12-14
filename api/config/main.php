@@ -88,7 +88,7 @@ return [
                  'extraPatterns' => [
                     'GET favorito' => 'listarfavorito',
                     'POST favorito' => 'altafavorito',
-                    'DELETE favorito' => 'borrarfavorito'
+                    'DELETE favorito/{id}' => 'borrarfavorito'
                  ] 
                 ],
                 ['class' => 'yii\rest\UrlRule', 
