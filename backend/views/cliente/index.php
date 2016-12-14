@@ -10,10 +10,12 @@ $this->title = 'Clientes';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cliente-index">
-
-    <p>
-        <?= Html::a('Alta Cliente', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    
+    <?php if(Yii::$app->user->identity->rol === 10 || Yii::$app->user->identity->rol === 20){?>
+        <p>
+            <?= Html::a('Alta Cliente', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php }?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -21,7 +23,6 @@ $this->title = 'Clientes';
 
             'id',
             'nombre',
-            'prioridad',
             'telefono',
             'email:email',
 

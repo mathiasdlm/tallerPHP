@@ -24,8 +24,18 @@ $this->title = 'Horario Atencion';
             'id',
             'horaDesde',
             'horaHasta',
-            'idCliente',
-            'idInmueble',
+            [
+                'attribute' => 'idCliente',
+                'value' => function ($model) {
+                    return $model->getClientes()->one()->nombre;
+                  },
+            ],
+            [
+                'attribute' => 'Inmueble',
+                'value' => function ($model) {
+                    return $model->getInmueble()->one()->nombre;
+                  },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

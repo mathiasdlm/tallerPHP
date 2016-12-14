@@ -123,4 +123,5 @@ class HorarioAtencionController extends BaseController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

@@ -11,10 +11,11 @@ $this->title = 'Listado de Administradores';
 ?>
 <div class="admin-index">
 
-
-    <p>
-        <?= Html::a('Alta Administrador', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php if(Yii::$app->user->identity->rol === 10){?>
+        <p>
+            <?= Html::a('Alta Administrador', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php }?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [

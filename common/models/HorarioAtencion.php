@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "horarioAtencion".
  *
@@ -17,13 +18,14 @@ use Yii;
  */
 class HorarioAtencion extends \yii\db\ActiveRecord
 {
-    /**
+       /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'horarioAtencion';
     }
+
 
     /**
      * @inheritdoc
@@ -47,7 +49,7 @@ class HorarioAtencion extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'horaDesde' => Yii::t('app', 'Hora Desde'),
             'horaHasta' => Yii::t('app', 'Hora Hasta'),
-            'idCliente' => Yii::t('app', 'Id Cliente'),
+            'idCliente' => Yii::t('app', 'Cliente'),
             'idInmueble' => Yii::t('app', 'Id Inmueble'),
         ];
     }
@@ -55,7 +57,12 @@ class HorarioAtencion extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdCliente0()
+ 
+    public function getCliente($id){
+        return $this->find($id);
+    }
+
+    public function getClientes()
     {
         return $this->hasOne(Cliente::className(), ['id' => 'idCliente']);
     }
@@ -68,4 +75,10 @@ class HorarioAtencion extends \yii\db\ActiveRecord
     {
         return new HorarioAtencionQuery(get_called_class());
     }
+
+     public function getInmueble()
+    {
+        return $this->hasOne(Inmueble::className(), ['id' => 'idInmueble']);
+    }
+    
 }

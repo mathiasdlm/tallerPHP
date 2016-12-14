@@ -15,6 +15,8 @@ $this->title = 'Tipos de Inmuebles';
     <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
     <p>
+        <?php if(Yii::$app->user->identity->rol === 10){?>
+
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -23,6 +25,7 @@ $this->title = 'Tipos de Inmuebles';
                 'method' => 'post',
             ],
         ]) ?>
+        <?php }?>
     </p>
 
     <?= DetailView::widget([

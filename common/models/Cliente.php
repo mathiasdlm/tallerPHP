@@ -35,7 +35,6 @@ class Cliente extends \yii\db\ActiveRecord
     {
         return [
             [['nombre', 'prioridad', 'telefono', 'email'], 'required'],
-            [['prioridad'], 'integer'],
             [['nombre'], 'string', 'max' => 50],
             [['telefono', 'email'], 'string', 'max' => 20],
         ];
@@ -49,7 +48,6 @@ class Cliente extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'nombre' => Yii::t('app', 'Nombre'),
-            'prioridad' => Yii::t('app', 'Prioridad'),
             'telefono' => Yii::t('app', 'Telefono'),
             'email' => Yii::t('app', 'Email'),
         ];

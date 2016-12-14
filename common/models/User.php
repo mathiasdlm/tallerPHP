@@ -79,7 +79,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
-            'status' => 'Status',
+            'status' => 'Activo',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
            

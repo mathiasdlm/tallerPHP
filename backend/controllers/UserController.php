@@ -116,6 +116,36 @@ class UserController extends BaseController
         }
     }
 
+    public function actionActivar($id){
+
+
+            $model = $this->findModel($id);
+            $model->status = 20;
+            //var_dump($model);exit;
+           if($model->update()){
+                return $this->redirect(['index']);
+
+           }else{
+                            return $this->redirect(['index']);
+
+           }
+
+        
+
+           /* if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }else{
+                    return $this->redirect(['index']);
+            }
+
+           /* if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view','id' => $model->id]);
+            }else{
+                               throw new ForbiddenHttpException;
+
+            }*/
+    }
+
     /**
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

@@ -12,10 +12,12 @@ $this->title = 'Tipo Inmuebles';
 <div class="tipo-inmueble-index">
 
    <!-- <h1><?= Html::encode($this->title) ?></h1>-->
+    <?php if(Yii::$app->user->identity->rol === 10){?>
 
-    <p>
-        <?= Html::a('Alta Tipo Inmueble', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <p>
+            <?= Html::a('Alta Tipo Inmueble', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php }?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [

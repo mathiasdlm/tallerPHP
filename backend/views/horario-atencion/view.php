@@ -31,8 +31,14 @@ $this->title = 'Horarios';
             'id',
             'horaDesde',
             'horaHasta',
-            'idCliente',
-            'idInmueble',
+            [
+            'attribute' => 'Cliente',
+            'value' =>  $model->getClientes()->one()->nombre
+            ],
+           [
+            'attribute' => 'Inmueble',
+            'value' =>  $model->getInmueble()->one()->nombre
+            ],
         ],
     ]) ?>
 

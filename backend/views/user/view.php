@@ -16,6 +16,8 @@ $this->title = 'Usuarios';
 
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+     <?php if(Yii::$app->user->identity->rol === 10){?>
+
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -23,6 +25,7 @@ $this->title = 'Usuarios';
                 'method' => 'post',
             ],
         ]) ?>
+        <?php }?>
     </p>
 
     <?= DetailView::widget([
@@ -30,13 +33,13 @@ $this->title = 'Usuarios';
         'attributes' => [
             'id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
+           //'auth_key',
+           //'password_hash',
+           // 'password_reset_token',
             'email:email',
             'status',
-            'created_at',
-            'updated_at',
+          //  'created_at',
+          //  'updated_at',
            
         ],
     ]) ?>

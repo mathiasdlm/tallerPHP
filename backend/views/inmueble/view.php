@@ -19,13 +19,16 @@ $this->title = 'Inmuebles';
 
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Esta seguro que desea eliminar este inmueble?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if(Yii::$app->user->identity->rol === 10){?>
+
+            <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Esta seguro que desea eliminar este inmueble?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php }?>
     </p>
 
     <?= DetailView::widget([
@@ -39,12 +42,11 @@ $this->title = 'Inmuebles';
             'cantBanos',
             'metrosTotales',
             'metrosEdificados',
-            'cochera',
-            'patio'=>[
-            'attribute' => 'patio',
+            'cochera'=>[
+            'attribute' => 'cochera',
             'format'=>'boolean',
             'value'=> function ($model) {
-                if($model->recurring == 1)
+                if($model->cochera == 1)
                 {
 
                     return 'Si';
@@ -55,8 +57,29 @@ $this->title = 'Inmuebles';
                 }
               },
             ],
-            'idTipo',
-            'idCliente',
+            'patio'=>[
+            'attribute' => 'patio',
+            'format'=>'boolean',
+            'value'=> function ($model) {
+                if($model->patio == 1)
+                {
+
+                    return 'Si';
+
+                } 
+                else {
+                    return 'No';
+                }
+              },
+            ],
+            [
+            'attribute' => 'Cliente',
+            'value' =>  $model->getCliente()->one()->nombre
+            ],
+            [
+            'attribute' => 'Inmueble',
+            'value' =>  $model->nombre
+            ],
         ],
     ]) ?>
 

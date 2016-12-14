@@ -16,13 +16,16 @@ $this->title = 'Informacion Cliente';
 
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Esta seguro que desea eliminar este cliente?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if(Yii::$app->user->identity->rol === 10){?>
+
+            <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Esta seguro que desea eliminar este cliente?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php }?>
     </p>
 
     <?= DetailView::widget([
@@ -30,7 +33,6 @@ $this->title = 'Informacion Cliente';
         'attributes' => [
             'id',
             'nombre',
-            'prioridad',
             'telefono',
             'email:email',
         ],

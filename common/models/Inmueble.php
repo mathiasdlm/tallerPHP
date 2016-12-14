@@ -31,6 +31,7 @@ use yii\web\UploadedFile;
 class Inmueble extends \yii\db\ActiveRecord
 {
     public $tipoFiltro;
+    public $clienteFiltro;
     public $upload_file1;
     public $upload_file2;
     public $upload_file3;
@@ -51,6 +52,9 @@ class Inmueble extends \yii\db\ActiveRecord
     function afterFind(){ 
         if($this->getTipo()->one() != null);
         $this->tipoFiltro = $this->getTipo()->one();
+        if($this->getCliente()->one() != null);
+        $this->clienteFiltro = $this->getCliente()->one();
+        
     }
 
     /**

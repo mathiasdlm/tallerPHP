@@ -14,6 +14,8 @@ $this->title = 'Datos Administrador';
 
 
     <p>
+        <?php if(Yii::$app->user->identity->rol === 10){?>
+
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -21,6 +23,7 @@ $this->title = 'Datos Administrador';
                 'method' => 'post',
             ],
         ]) ?>
+        <?php }?>
     </p>
 
     <?= DetailView::widget([
