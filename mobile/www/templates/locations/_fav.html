@@ -19,13 +19,17 @@
 
         <ion-item
           class="item item-thumbnail-left item-icon-right"
-          ng-repeat="inmueble in inmuebles | filter:filterModel"
-          ui-sref="locations.detail({id:inmueble.id})" >
+          ng-repeat="favorito in favoritos | filter:filterModel"
+          ui-sref="locations.detail({id:favorito.inmueble.id})" >
 
-            <img ng-src="{{inmueble.imagen}}">
-            <h2>{{inmueble.nombre}}</h2>
-            <p>Tipo {{inmueble.tipo.Nombre}}</p>
-            <p>Dueño {{inmueble.cliente.nombre}}</p>
+            <img ng-src="{{favorito.imagen}}">
+            <h2>{{favorito.inmueble.nombre}}</h2>
+            <p>Tipo: {{favorito.inmueble.tipo.Nombre}}</p>
+            <p>Dueño: {{favorito.inmueble.cliente.nombre}}</p>
+            <p>
+              <span class="balanced" ng-if="favorito.inmueble.enAlquiler">Alquiler</span>
+              <span class="assertive" ng-if="favorito.inmueble.enVenta">Venta</span>
+            </p>
 
             <button class="button-clear" style="top:41px;right:10px;position:absolute;">
               <i class="icon ion-chevron-right"></i>

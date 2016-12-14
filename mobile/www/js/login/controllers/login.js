@@ -1,7 +1,7 @@
 
-angular.module('app.login')
+angular.module('app')
 
-  .controller('LoginCtrl', function ($scope, $ionicModal, $timeout, $state, $ionicPopup, $window, UserService) {
+  .controller('LoginCtrl', function ($scope, $ionicModal, $timeout, $state, $ionicPopup, $window, UserService, CONFIG) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -31,16 +31,14 @@ angular.module('app.login')
 
       var username = loginData.username;
       var password = loginData.password;
+
       if (username !== undefined && password !== undefined) {
-
-        $scope.closeLogin();
-
-        // UserService.signIn(loginData).success(function(data) {
-        //   $scope.closeLogin();
-        // }).error(function(status, data) {
-        //   console.log(status);
-        //   console.log(data);
-        // });
+        UserService.signIn(loginData).success(function(data) {
+          CONFIG.IDENTITY = data;
+          $scope.closeLogin();
+        }).error(function(status, data) {
+          alert('Invalida combinacion de username y password')
+        });
       }
     };
 

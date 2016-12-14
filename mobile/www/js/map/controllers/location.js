@@ -1,7 +1,12 @@
 
-angular.module('app.map')
+angular.module('app')
 
-  .controller('LocationsCtrl', function ($scope, InmuebleService, $ionicLoading, $state) {
+  .controller('LocationsCtrl', function ($scope, InmuebleService, $ionicLoading, $state, CONFIG) {
+    if(!CONFIG.IDENTITY){
+      $state.go('welcome');
+      return;
+    }
+
     $scope.mapCreated = function(map) {
       $scope.map = map;
     };

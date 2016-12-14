@@ -1,11 +1,10 @@
 angular.module('app', [
   'ionic',
-  'app.login',
-  'app.map',
 ]).constant("CONFIG", {
   "URL" : "/api/",
-}).
-run(function($ionicPlatform) {
+  "IDENTITY" : null
+})
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -14,16 +13,16 @@ run(function($ionicPlatform) {
       StatusBar.styleLightContent();
     }
   });
-}).config(function($stateProvider, $urlRouterProvider) {
-
+}).config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
     /**
      * welcome screen
      */
     .state('welcome', {
-      url: '/welcome',
-      controller: 'LoginCtrl',
-      templateUrl: "templates/welcome.html"
+      url         : '/welcome',
+      controller  : 'LoginCtrl',
+      cache       : false,
+      templateUrl : 'templates/welcome.html'
     })
 
     /**
@@ -37,6 +36,7 @@ run(function($ionicPlatform) {
 
     .state('locations.view', {
       url: '/view',
+      cache: false,
       views: {
         'view-container': {
           templateUrl: 'templates/locations/_view.html',
@@ -46,6 +46,7 @@ run(function($ionicPlatform) {
     })
     .state('locations.list', {
       url: '/list',
+      cache: false,
       views: {
         'view-container': {
           templateUrl: 'templates/locations/_list.html',
@@ -55,6 +56,7 @@ run(function($ionicPlatform) {
     })
     .state('locations.detail', {
       url: '/detail/:id',
+      cache: false,
       views: {
         'view-container': {
           templateUrl: 'templates/locations/_detail.html',
@@ -64,6 +66,7 @@ run(function($ionicPlatform) {
     })
     .state('fav', {
       url: '/fav',
+      cache: false,
       controller: 'FavoritoCtrl',
       templateUrl: "templates/locations/_fav.html"
     })

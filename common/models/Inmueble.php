@@ -45,7 +45,7 @@ class Inmueble extends \yii\db\ActiveRecord
 
     public function fields()
     {
-        return ['id', 'nombre', 'lat', 'lon', 'cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cliente', 'tipo', 'cochera', 'patio', 'imagen1', 'imagen2', 'imagen3'];
+        return ['id', 'nombre', 'lat', 'lon', 'cantDormitorios', 'cantBanos', 'metrosTotales', 'metrosEdificados', 'cliente', 'tipo', 'cochera', 'patio', 'imagen1', 'imagen2', 'imagen3', 'enAlquiler', 'enVenta', 'precioAlquiler', 'precioVenta'];
     }
 
     function afterFind(){ 

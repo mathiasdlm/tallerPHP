@@ -24,8 +24,12 @@
 
             <img ng-src="{{inmueble.imagen}}">
             <h2>{{inmueble.nombre}}</h2>
-            <p>Tipo {{inmueble.tipo.Nombre}}</p>
-            <p>Dueño {{inmueble.cliente.nombre}}</p>
+            <p>Tipo: {{inmueble.tipo.Nombre}}</p>
+            <p>Dueño: {{inmueble.cliente.nombre}}</p>
+            <p>
+              <span class="balanced" ng-if="inmueble.enAlquiler">Alquiler</span>
+              <span class="assertive" ng-if="inmueble.enVenta">Venta</span>
+            </p>
 
             <button class="button-clear" style="top:41px;right:10px;position:absolute;">
               <i class="icon ion-chevron-right"></i>
