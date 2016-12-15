@@ -17,6 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Login' => 'Entrar',
+    'no' => 'No',
+    'yes' => 'Yes',
+    'About' => 'This is about QuieroCasa.',
     'Detail' => 'Detail',
     'Home' => 'Home',
     'Logout' => 'Logout',
@@ -25,11 +29,10 @@ return [
     'Sign up' => 'Sign up',
     'Signup' => 'Sign up',
     'Starred' => 'Starred',
-    'signup instructions' => 'Please fill out the following fields to signup:',
-    'About' => 'This is about QuieroCasa.',
     'Welcome description' => 'A web site where you might find real states ',
     'Welcome to QuieroCasa' => 'Welcome to QuieroCasa.com.uy',
     'forgotpss' => 'If you forgot your password you can ',
     'login instructions' => 'Please fill out the following fields to login:',
     'see detail' => 'To se the detail <a href="{0}">click here</a>',
+    'signup instructions' => 'Please fill out the following fields to signup:',
 ];

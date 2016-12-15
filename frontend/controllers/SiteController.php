@@ -149,15 +149,20 @@ class SiteController extends Controller
         $inm = new Inmueble();
         if(Yii::$app->request->get('Inmueble')){
             $inm->load(Yii::$app->request->get());
-            $attr = [];
+             $attr = [];
             foreach (Yii::$app->request->get()['Inmueble'] as $key => $value) {
-                if($key != 'tipoFiltro' && $value != null && isset($value) && !empty($value)){
-                    $attr[$key] = $value;
+                 if($key != 'tipoFiltro' && $value != null && isset($value) && !empty($value)){
+                     
+                        $attr[$key] = $value;
+                    
                 }
                 if($key == 'tipoFiltro' && $value != null && isset($value) && !empty($value)){
                      $attr["idTipo"] = $value;
                 }
-            }
+                if($key == 'patio' || $key =='cochera' &&  isset($value)){
+                        $attr[$key] = intval($value);
+                }
+            } var_dump($attr) and die();
             $query = Inmueble::find()->where($attr);
         }else{
             $query = Inmueble::find();

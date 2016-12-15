@@ -17,6 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Login' => 'Entrar',
+    'no' => 'No',
+    'yes' => 'Si',
+    'you know' => '@@tu sabes@@',
+    'About' => 'Esta pagin es sobre Quiero casa.',
     'Detail' => 'Detalle',
     'Home' => 'Inicio',
     'Logout' => 'Salir',
@@ -25,11 +30,9 @@ return [
     'Sign up' => 'Unirse',
     'Signup' => 'Unirse',
     'Starred' => 'Favoritos',
-    'forgotpss' => 'Si olvidaste tu contrasena has click aqui:',
-    'you know' => '@@tu sabes@@',
-    'About' => 'Esta pagin es sobre Quiero casa.',
     'Welcome description' => 'Un portal donde usted va a poder encontrar las propiedades que anda buscando',
     'Welcome to QuieroCasa' => 'Bienvenido a QuieroCasa.com.uy',
+    'forgotpss' => 'Si olvidaste tu contrasena has click aqui:',
     'login instructions' => 'Por favor complete el formulario con los sigiente campos para ingresar',
     'see detail' => 'Para ver el detalle haga <a href="{0}">click aqui</a>',
     'signup instructions' => 'Por favor ingrese los campos requeridos para unirse:',

@@ -31,6 +31,19 @@ $this->title = 'Inmuebles';
                             'metrosEdificados:ntext',
                             'cantBanos:ntext',
                             [
+                                'attribute' => 'patio',
+                                'value' => function($model){
+                                    return $model->patio === 1 ? Yii::t('app', 'yes'):Yii::t('app', 'no'); 
+                                },
+                                'filter'=>[1=>Yii::t('app', 'yes'),0=>Yii::t('app', 'no')],
+                            ],[
+                                'attribute' => 'cochera',
+                                'value' => function($model){
+                                    return $model->cochera === 1 ? Yii::t('app', 'yes'):Yii::t('app', 'no'); 
+                                },
+                                'filter'=>[1=>Yii::t('app', 'yes'),0=>Yii::t('app', 'no')],
+                            ],
+                            [
                                 'attribute' => 'tipo',
                                 'value' => 'tipoFiltro.Nombre',
                                 'filter'=>ArrayHelper::map(TipoInmueble::find()->asArray()->all(), 'id', 'Nombre'),
