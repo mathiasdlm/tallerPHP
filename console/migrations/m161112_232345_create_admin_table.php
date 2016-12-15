@@ -173,8 +173,12 @@ $this->insert('{{%cliente}}',['id'=>'1','nombre'=>'Mathias','telefono'=>'2410186
 $this->insert('{{%horarioAtencion}}',['id'=>'1','horaDesde'=>'10:00:00','horaHasta'=>'24:00:00','idCliente'=>'1','idInmueble'=>'1']);
 $this->insert('{{%inmueble}}',['id'=>'1','nombre'=>'La casa de Mathi','lat'=>'-34.8958','lon'=>'-56.1551','cantDormitorios'=>'3','cantBanos'=>'2','metrosTotales'=>'234','metrosEdificados'=>'233','cochera'=>'0','patio'=>'1','enAlquiler'=>'0','enVenta'=>'0','precioAlquiler'=>'0','precioVenta'=>'0','idTipo'=>'1','idCliente'=>'1','imagen1'=>'','imagen2'=>'','imagen3'=>'']);
 $this->insert('{{%inmueble}}',['id'=>'2','nombre'=>'Plaza del entrevero','lat'=>'-34.9056','lon'=>'-56.1942','cantDormitorios'=>'2','cantBanos'=>'3','metrosTotales'=>'234','metrosEdificados'=>'422','cochera'=>'1','patio'=>'0','enAlquiler'=>'0','enVenta'=>'0','precioAlquiler'=>'0','precioVenta'=>'0','idTipo'=>'1','idCliente'=>'1','imagen1'=>'','imagen2'=>'','imagen3'=>'']);
-$this->insert('{{%inmueble}}',['id'=>'4','nombre'=>'La oficina','lat'=>'-34.9099','lon'=>'-56.1514','cantDormitorios'=>'4','cantBanos'=>'3','metrosTotales'=>'2344','metrosEdificados'=>'2344','cochera'=>'1','patio'=>'1','enAlquiler'=>'1','enVenta'=>'1','precioAlquiler'=>'23444','precioVenta'=>'23445','idTipo'=>'1','idCliente'=>'1','imagen1'=>'','imagen2'=>'','imagen3'=>'']);
+$this->insert('{{%inmueble}}',['id'=>'3','nombre'=>'La oficina','lat'=>'-34.9099','lon'=>'-56.1514','cantDormitorios'=>'4','cantBanos'=>'3','metrosTotales'=>'2344','metrosEdificados'=>'2344','cochera'=>'1','patio'=>'1','enAlquiler'=>'1','enVenta'=>'1','precioAlquiler'=>'23444','precioVenta'=>'23445','idTipo'=>'1','idCliente'=>'1','imagen1'=>'','imagen2'=>'','imagen3'=>'']);
+$this->insert('{{%inmueble}}',['id'=>'4','nombre'=>'Riveira House','lat'=>'-34.9099','lon'=>'-56.1514','cantDormitorios'=>'4','cantBanos'=>'3','metrosTotales'=>'2344','metrosEdificados'=>'2344','cochera'=>'1','patio'=>'1','enAlquiler'=>'1','enVenta'=>'1','precioAlquiler'=>'23444','precioVenta'=>'23445','idTipo'=>'1','idCliente'=>'1','imagen1'=>'','imagen2'=>'','imagen3'=>'']);
+$this->insert('{{%inmueble}}',['id'=>'5','nombre'=>'Las Gaviotas','lat'=>'-34.9099','lon'=>'-56.1514','cantDormitorios'=>'2','cantBanos'=>'1','metrosTotales'=>'2344','metrosEdificados'=>'2344','cochera'=>'1','patio'=>'1','enAlquiler'=>'1','enVenta'=>'1','precioAlquiler'=>'23444','precioVenta'=>'23445','idTipo'=>'3','idCliente'=>'1','imagen1'=>'','imagen2'=>'','imagen3'=>'']);
 $this->insert('{{%tipoInmueble}}',['id'=>'1','Nombre'=>'Apartamento']);
+$this->insert('{{%tipoInmueble}}',['id'=>'2','Nombre'=>'Casa']);
+$this->insert('{{%tipoInmueble}}',['id'=>'3','Nombre'=>'Mono-Ambiente']);
 $this->execute('SET foreign_key_checks = 1;');
 
     }
