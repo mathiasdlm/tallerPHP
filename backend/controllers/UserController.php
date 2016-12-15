@@ -132,6 +132,22 @@ class UserController extends BaseController
 
            }
     }
+    public function actionDesactivar($id){
+
+
+            $model = $this->findModel($id);
+            $model->status = 10;
+            //var_dump($model);exit;
+           if($model->update()){
+                return $this->redirect(['index']);
+
+           }else{
+           
+            return $this->redirect(['index']);
+             throw new NotFoundHttpException('Error al Activar Usuario');
+
+           }
+    }
 
     public static function getEstado($id){
 
