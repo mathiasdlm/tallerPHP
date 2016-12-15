@@ -18,10 +18,6 @@ $this->title = 'Alta Administrador';
 ?>
 <div class="admin-create">
 
-   
-
-    <p>Please fill out the following fields to signup:</p>
-
    <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
@@ -36,7 +32,7 @@ $this->title = 'Alta Administrador';
                     ['prompt'=>'Seleccione un Rol']);?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton('Alta Administrador', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>
