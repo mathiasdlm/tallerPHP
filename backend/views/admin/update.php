@@ -45,8 +45,4 @@ $this->title = 'Actualizar Administrador:';
 
 
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
 </div>

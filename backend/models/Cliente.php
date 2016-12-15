@@ -32,8 +32,7 @@ class Cliente extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'prioridad', 'telefono', 'email'], 'required'],
-            [['prioridad'], 'integer'],
+            [['nombre', 'telefono', 'email'], 'required'],
             [['nombre'], 'string', 'max' => 50],
             [['telefono', 'email'], 'string', 'max' => 20],
         ];
@@ -47,7 +46,6 @@ class Cliente extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
-            'prioridad' => 'Prioridad',
             'telefono' => 'Telefono',
             'email' => 'Email',
         ];

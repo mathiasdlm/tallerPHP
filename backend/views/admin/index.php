@@ -44,7 +44,24 @@ $this->title = 'Listado de Administradores';
                 }
               },
             ],
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}'],
+          [        
+                'content' => function ($model, $key, $index, $column) {
+                    if ($model->username == 'admin') {
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model->id])
+                        . Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update', 'id' => $model->id]);
+                    }else{
+                         return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model->id])
+                        . Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update', 'id' => $model->id])
+                        . Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [ 
+                            'data' => [
+                            'confirm' => 'Esta seguro que desea eliminar este Usuario?',
+                            'method' => 'post',
+                            ],
+                        ]);
+                    
+                }
+            }
+            ],
         ],
     ]); ?>
 </div>
