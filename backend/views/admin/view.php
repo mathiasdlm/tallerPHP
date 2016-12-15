@@ -38,7 +38,11 @@ $this->title = 'Datos Administrador';
             
             //'created_at',
             //'updated_at',
-            'rol',
+             [
+            'attribute' => 'Rol',
+            'value' =>  $model->getRol($model->id)
+            ],
+
         ],
     ]) ?>
 

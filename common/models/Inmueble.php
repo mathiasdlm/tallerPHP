@@ -226,4 +226,27 @@ class Inmueble extends \yii\db\ActiveRecord
         $imagen3 = isset($this->imagen3) ? $this->imagen3 : 'default3.png';
         return Yii::$app->params['fileUploadUrl'] . $imagen3;
     }
+
+     public static function findIdentity($id)
+    {
+        return static::findOne(['id' => $id]);
+    }
+
+      public function getCochera($id)
+    {
+        if($this->findIdentity($id)->cochera == 1){
+            return 'Si';
+        }else{
+            return 'No';
+        }
+    }
+
+     public function getPatio($id)
+    {
+        if($this->findIdentity($id)->patio == 1){
+            return 'Si';
+        }else{
+            return 'No';
+        }
+    }
 }

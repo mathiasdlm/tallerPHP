@@ -89,17 +89,7 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
         return new AdminQuery(get_called_class());
     }
 
-    public function getRol($id){
-
-        $model = $this->findOne(['id' => $id]);
-
-        if($model->rol == 20){
-            return 'Administrador';
-        }else{
-            return 'Gestion';
-        }
-
-    }
+   
 
      /**
      * @inheritdoc
@@ -236,6 +226,14 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
+     public  function getRol($id)
+    {
+        if($this->findIdentity($id)){
+            return 'Aministrador';
+        }else{
+            return 'Gestion';
+        }
+    }
     
 
  

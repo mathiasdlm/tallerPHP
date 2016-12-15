@@ -42,35 +42,13 @@ $this->title = 'Inmuebles';
             'cantBanos',
             'metrosTotales',
             'metrosEdificados',
-            'cochera'=>[
-            'attribute' => 'cochera',
-            'format'=>'boolean',
-            'value'=> function ($model) {
-                if($model->cochera == 1)
-                {
-
-                    return 'Si';
-
-                } 
-                else {
-                    return 'No';
-                }
-              },
+            [
+            'attribute' => 'Cochera',
+            'value' =>  $model->getCochera($model->id)
             ],
-            'patio'=>[
-            'attribute' => 'patio',
-            'format'=>'boolean',
-            'value'=> function ($model) {
-                if($model->patio == 1)
-                {
-
-                    return 'Si';
-
-                } 
-                else {
-                    return 'No';
-                }
-              },
+            [
+            'attribute' => 'Patio',
+            'value' =>  $model->getPatio($model->id)
             ],
             [
             'attribute' => 'Cliente',

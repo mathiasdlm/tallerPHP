@@ -28,42 +28,27 @@ $this->title = 'Inmuebles';
             'id',
             'nombre',
             'cantBanos',
-            'cantDormitorios',
-            'patio'=>[
-            'attribute' => 'patio',   
+            'cantDormitorios',   
+            'cochera'=>[
+            'attribute' => 'Cochera',
             'value'=> function ($model) {
-                if($model->patio === true)
-                {
+                if($model->cochera === 1){
                     return 'Si';
                 }else{
-                        return 'No';
+                    return 'No';
                 }
               },
             ],
-            'cochera'=>[
-            'attribute' => 'cochera',
+            'patio'=>[
+            'attribute' => 'Patio',
             'value'=> function ($model) {
-                if($model->cochera === true)
-                {
+                if($model->patio === 1){
                     return 'Si';
-                } 
-                else{
-                        return 'No';
+                }else{
+                    return 'No';
                 }
               },
             ],
-            //'lat',
-            //'lon',
-            
-            // 'metrosTotales',
-            // 'metrosEdificados',
-            // 'cochera',
-            // 'patio',
-            // [
-            //     'attribute' => 'tipo',
-            //     'value' => 'tipoFiltro.Nombre',
-            //     'filter'=>ArrayHelper::map(TipoInmueble::find()->asArray()->all(), 'id', 'Nombre'),
-            // ],
             [
                 'attribute' => 'Tipo',
                 'value' => function ($model) {

@@ -308,6 +308,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface, \OAuth2\St
         return ['user_id' => $user->getId()];
     }
 
+     public function getEstado($id)
+    {
+        if($this->findIdentity($id)){
+            return 'Activo';
+        }else{
+            return 'Inactivo';
+        }
+    }
+
     /**
      * Finds user by username
      *
@@ -318,5 +327,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface, \OAuth2\St
     {
         return static::findOne(['email' => $email]);
     }
+
  
 }

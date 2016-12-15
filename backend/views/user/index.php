@@ -28,26 +28,42 @@ $this->title = 'Usuarios';
             //'password_hash',
             //'password_reset_token',
             'email:email',
-             'status'=>[
+            'status'=>[
             'attribute' => 'Estado',
             'value'=> function ($model) {
                 if($model->status === 20){
                     return 'Activo';
                 }else{
-                    return 'Desactivado';
+                    return 'Inactivo';
                 }
               },
             ],
-            // 'created_at',
-            // 'updated_at',
-            // 'activado',
-
-
-            [
-         
-            'class' => 'yii\grid\ActionColumn'
-                , 'template' => '{view} {update} {delete} {activar}'
+            [        
+                'content' => function ($model, $key, $index, $column) {
+                    if ($model->status == 20) {
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model->id])
+                        . Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update', 'id' => $model->id])
+                         . Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [ 
+                            'data' => [
+                            'confirm' => 'Esta seguro que desea eliminar este Usuario?',
+                            'method' => 'post',
+                            ],
+                        ]);
+                    }else{
+                         return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model->id])
+                        . Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update', 'id' => $model->id])
+                        . Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [ 
+                            'data' => [
+                            'confirm' => 'Esta seguro que desea eliminar este Usuario?',
+                            'method' => 'post',
+                            ],
+                        ])
+                        . Html::a('<span class="glyphicon glyphicon-ok"></span>', ['activar', 'id' => $model->id]);
+                    
+                }
+            }
             ],
         ],
+    
     ]); ?>
 </div>

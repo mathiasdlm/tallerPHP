@@ -205,4 +205,13 @@ class Admin extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+     public function getRol($id)
+    {
+        if($this->findIdentity($id)){
+            return 'Aministrador';
+        }else{
+            return 'Gestion';
+        }
+    }
 }

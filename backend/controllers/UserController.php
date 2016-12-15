@@ -132,6 +132,17 @@ class UserController extends BaseController
 
            }
     }
+
+    public static function getEstado($id){
+
+        $model = $this->findModel($id);
+
+        if($model->findOne($id)->status == 10){
+            return 'Inactivo';
+        }else{
+            return 'Activo';
+        } 
+    }
     
 
 
