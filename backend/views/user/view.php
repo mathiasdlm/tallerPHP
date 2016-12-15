@@ -37,7 +37,10 @@ $this->title = 'Usuarios';
            //'password_hash',
            // 'password_reset_token',
             'email:email',
-            'status',
+            [
+            'attribute' => 'Estado',
+            'value' =>  $model->getEstado($model->id)
+            ],
           //  'created_at',
           //  'updated_at',
            

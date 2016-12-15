@@ -41,10 +41,18 @@ class AdminLoginForm extends Model
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Usuario o Password incorrectos.');
+            $user = $this->getUser
+
+            if($user->status == 10){
+                $this->addError($attribute, 'SOLICITE HABILITACION AL ADMINISTRADOR.');
+            }else{
+
+                    if (!$user || !$user->validatePassword($this->password)) {
+                        $this->addError($attribute, 'Usuario o Password incorrectos.');
             }
+        }
+
+
         }
     }
 
